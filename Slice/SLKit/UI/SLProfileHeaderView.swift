@@ -15,21 +15,22 @@ struct SLProfileHeaderView: View {
     
     var body: some View {
         HStack(content: {
-            Spacer()
+//            Spacer()
             
             VStack(content: {
-                SLAvatarCircleView(image: image ?? UIImage())
+                SLCircleView(image: image ?? UIImage())
                     .frame(width: 150, height: 150)
+                    .shadow(color: .slCornflowerBlue, radius: 20, x: 0, y: 0)
                 
                 Text("@\(username)")
-                    .font(.system(size: 30.0,
-                                  weight: .bold,
+                    .font(.system(size: 16,
+                                  weight: .medium,
                                   design: .rounded))
+                    .foregroundColor(.black)
+                    .shadow(radius: 10)
             })
-            
-        
-            
-            Spacer()
+
+//            Spacer()
         })
     }
 }

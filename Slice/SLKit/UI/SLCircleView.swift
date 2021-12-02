@@ -8,10 +8,12 @@
 import Foundation
 import SwiftUI
 
-struct SLAvatarCircleView: View {
+struct SLCircleView: View {
     var image: UIImage?
     
     var text: String?
+    
+    var color: Color = .slCornflowerBlue
     
     init(image: UIImage? = nil,
          text: String? = nil) {
@@ -24,7 +26,7 @@ struct SLAvatarCircleView: View {
             Image(uiImage: image)
                 .resizable()
                 .scaledToFit()
-                .background(Color.blue)
+                .background(color)
                 .clipShape(
                     Circle()
                 )
@@ -35,24 +37,23 @@ struct SLAvatarCircleView: View {
                 .font(.system(size: 50.0,
                               weight: .bold,
                               design: .rounded))
-                .padding(40)
+                .foregroundColor(.white)
+                .padding(20)
                 .background(
                     Circle()
-                        .foregroundColor(Color.blue)
+                        .foregroundColor(color)
+                        .shadow(radius: 10)
                 )
+
         } else {
             Circle()
-                .foregroundColor(.blue)
+                .foregroundColor(color)
         }
     }
 }
 
-struct SLAvatarCircleView_Preview: PreviewProvider {
+struct SLCircleView_Preview: PreviewProvider {
     static var previews: some View {
-//        SLAvatarCircleView(image: UIImage(named: "test_avatar"))
-        
-//        SLAvatarCircleView(image: nil)
-        
-        SLAvatarCircleView(text: "McDonalds")
+        SLCircleView(text: "McDonalds")
     }
 }

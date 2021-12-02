@@ -12,8 +12,16 @@
 		0FACF7AA274122B200B55423 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FACF7A9274122B200B55423 /* Assets.xcassets */; };
 		0FACF7AD274122B200B55423 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FACF7AC274122B200B55423 /* Preview Assets.xcassets */; };
 		0FACF7BA2741230F00B55423 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF7B92741230F00B55423 /* HomeView.swift */; };
-		0FACF7BD2741239D00B55423 /* SLAvatarCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF7BC2741239D00B55423 /* SLAvatarCircleView.swift */; };
+		0FACF7BD2741239D00B55423 /* SLCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF7BC2741239D00B55423 /* SLCircleView.swift */; };
 		0FACF7BF2741262600B55423 /* SLProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF7BE2741262600B55423 /* SLProfileHeaderView.swift */; };
+		0FE9DFA1274A5F5500AE15B5 /* RestaurantSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE9DFA0274A5F5500AE15B5 /* RestaurantSection.swift */; };
+		0FE9DFA3274A5F6300AE15B5 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE9DFA2274A5F6300AE15B5 /* Restaurant.swift */; };
+		0FE9DFA5274A5F7300AE15B5 /* RestaurantSectionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE9DFA4274A5F7300AE15B5 /* RestaurantSectionsList.swift */; };
+		0FE9DFA9274A602800AE15B5 /* SLHorizontalRowSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE9DFA8274A602800AE15B5 /* SLHorizontalRowSectionView.swift */; };
+		0FE9DFAC274A607200AE15B5 /* SLUnderTitledViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE9DFAB274A607200AE15B5 /* SLUnderTitledViewModifier.swift */; };
+		0FE9DFB3274AD0A100AE15B5 /* Color+SL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE9DFB2274AD0A100AE15B5 /* Color+SL.swift */; };
+		0FE9DFB5274AD1FA00AE15B5 /* SLBoxBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE9DFB4274AD1FA00AE15B5 /* SLBoxBackground.swift */; };
+		0FE9DFB7274AD6FC00AE15B5 /* SLVerticalSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE9DFB6274AD6FC00AE15B5 /* SLVerticalSectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,8 +31,16 @@
 		0FACF7A9274122B200B55423 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0FACF7AC274122B200B55423 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0FACF7B92741230F00B55423 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		0FACF7BC2741239D00B55423 /* SLAvatarCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLAvatarCircleView.swift; sourceTree = "<group>"; };
+		0FACF7BC2741239D00B55423 /* SLCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLCircleView.swift; sourceTree = "<group>"; };
 		0FACF7BE2741262600B55423 /* SLProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLProfileHeaderView.swift; sourceTree = "<group>"; };
+		0FE9DFA0274A5F5500AE15B5 /* RestaurantSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSection.swift; sourceTree = "<group>"; };
+		0FE9DFA2274A5F6300AE15B5 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		0FE9DFA4274A5F7300AE15B5 /* RestaurantSectionsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSectionsList.swift; sourceTree = "<group>"; };
+		0FE9DFA8274A602800AE15B5 /* SLHorizontalRowSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLHorizontalRowSectionView.swift; sourceTree = "<group>"; };
+		0FE9DFAB274A607200AE15B5 /* SLUnderTitledViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLUnderTitledViewModifier.swift; sourceTree = "<group>"; };
+		0FE9DFB2274AD0A100AE15B5 /* Color+SL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+SL.swift"; sourceTree = "<group>"; };
+		0FE9DFB4274AD1FA00AE15B5 /* SLBoxBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SLBoxBackground.swift; path = ../../../../../../../../Downloads/SLBoxBackground.swift; sourceTree = "<group>"; };
+		0FE9DFB6274AD6FC00AE15B5 /* SLVerticalSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLVerticalSectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +73,8 @@
 		0FACF7A4274122B000B55423 /* Slice */ = {
 			isa = PBXGroup;
 			children = (
+				0FE9DFAD274ACFF200AE15B5 /* App */,
+				0FE9DF9D274A5F1500AE15B5 /* Models */,
 				0FACF7B4274122D600B55423 /* SLKit */,
 				0FACF7B3274122CE00B55423 /* Modules */,
 				0FACF7A5274122B000B55423 /* SliceApp.swift */,
@@ -86,6 +104,7 @@
 		0FACF7B4274122D600B55423 /* SLKit */ = {
 			isa = PBXGroup;
 			children = (
+				0FE9DFB1274AD08800AE15B5 /* Extensions */,
 				0FACF7BB2741237000B55423 /* UI */,
 			);
 			path = SLKit;
@@ -126,10 +145,63 @@
 		0FACF7BB2741237000B55423 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				0FACF7BC2741239D00B55423 /* SLAvatarCircleView.swift */,
+				0FACF7BC2741239D00B55423 /* SLCircleView.swift */,
 				0FACF7BE2741262600B55423 /* SLProfileHeaderView.swift */,
+				0FE9DFA8274A602800AE15B5 /* SLHorizontalRowSectionView.swift */,
+				0FE9DFB6274AD6FC00AE15B5 /* SLVerticalSectionView.swift */,
+				0FE9DFAA274A606000AE15B5 /* ViewModifiers */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		0FE9DF9D274A5F1500AE15B5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0FE9DFA7274A5FDC00AE15B5 /* UserModels */,
+				0FE9DFA6274A5FCF00AE15B5 /* OrderingFlowModels */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0FE9DFA6274A5FCF00AE15B5 /* OrderingFlowModels */ = {
+			isa = PBXGroup;
+			children = (
+				0FE9DFA4274A5F7300AE15B5 /* RestaurantSectionsList.swift */,
+				0FE9DFA0274A5F5500AE15B5 /* RestaurantSection.swift */,
+				0FE9DFA2274A5F6300AE15B5 /* Restaurant.swift */,
+			);
+			path = OrderingFlowModels;
+			sourceTree = "<group>";
+		};
+		0FE9DFA7274A5FDC00AE15B5 /* UserModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UserModels;
+			sourceTree = "<group>";
+		};
+		0FE9DFAA274A606000AE15B5 /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				0FE9DFAB274A607200AE15B5 /* SLUnderTitledViewModifier.swift */,
+				0FE9DFB4274AD1FA00AE15B5 /* SLBoxBackground.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		0FE9DFAD274ACFF200AE15B5 /* App */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		0FE9DFB1274AD08800AE15B5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0FE9DFB2274AD0A100AE15B5 /* Color+SL.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,8 +276,16 @@
 			files = (
 				0FACF7BF2741262600B55423 /* SLProfileHeaderView.swift in Sources */,
 				0FACF7BA2741230F00B55423 /* HomeView.swift in Sources */,
+				0FE9DFA1274A5F5500AE15B5 /* RestaurantSection.swift in Sources */,
+				0FE9DFA3274A5F6300AE15B5 /* Restaurant.swift in Sources */,
+				0FE9DFB5274AD1FA00AE15B5 /* SLBoxBackground.swift in Sources */,
+				0FE9DFA5274A5F7300AE15B5 /* RestaurantSectionsList.swift in Sources */,
+				0FE9DFA9274A602800AE15B5 /* SLHorizontalRowSectionView.swift in Sources */,
+				0FE9DFB3274AD0A100AE15B5 /* Color+SL.swift in Sources */,
+				0FE9DFB7274AD6FC00AE15B5 /* SLVerticalSectionView.swift in Sources */,
+				0FE9DFAC274A607200AE15B5 /* SLUnderTitledViewModifier.swift in Sources */,
 				0FACF7A8274122B000B55423 /* ContentView.swift in Sources */,
-				0FACF7BD2741239D00B55423 /* SLAvatarCircleView.swift in Sources */,
+				0FACF7BD2741239D00B55423 /* SLCircleView.swift in Sources */,
 				0FACF7A6274122B000B55423 /* SliceApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
