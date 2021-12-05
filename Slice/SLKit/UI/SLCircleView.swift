@@ -13,7 +13,7 @@ struct SLCircleView: View {
     
     var text: String?
     
-    var color: Color = .slCornflowerBlue
+    var color: Color = .black
     
     init(image: UIImage? = nil,
          text: String? = nil) {
@@ -37,11 +37,11 @@ struct SLCircleView: View {
                 .font(.system(size: 50.0,
                               weight: .bold,
                               design: .rounded))
-                .foregroundColor(.white)
+                .foregroundColor(.black)
                 .padding(20)
                 .background(
                     Circle()
-                        .foregroundColor(color)
+                        .foregroundColor(.white)
                         .shadow(radius: 10)
                 )
 

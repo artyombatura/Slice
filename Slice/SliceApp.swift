@@ -6,12 +6,35 @@
 //
 
 import SwiftUI
+import Combine
+
+class AppViewModel: ObservableObject {
+    @Published var isUserLoggedIn: Bool = false
+    
+    @Published var user: User?
+    
+    @Published var currentOrder: Order?
+    
+    var newOrderSubject = PassthroughSubject<Order, Never>()
+}
 
 @main
 struct SliceApp: App {
+    @StateObject var appViewModel = AppViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if appViewModel.isUserLoggedIn {
+                NavigationView(content: {
+                    HomeView()
+                })
+                    .environmentObject(appViewModel)
+            } else {
+                NavigationView(content: {
+                    LoginView()
+                        .environmentObject(appViewModel)
+                })
+            }
         }
     }
 }

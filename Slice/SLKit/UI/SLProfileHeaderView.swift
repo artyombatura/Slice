@@ -9,35 +9,25 @@ import Foundation
 import SwiftUI
 
 struct SLProfileHeaderView: View {
-    var image: UIImage?
+    var imageURL: String?
     
-    var username: String
+    var title: String
     
     var body: some View {
         HStack(content: {
-//            Spacer()
-            
             VStack(content: {
-                SLCircleView(image: image ?? UIImage())
+                AsyncImage(url: URL(string: imageURL ?? ""), placeholder: { Circle().foregroundColor(.gray) })
                     .frame(width: 150, height: 150)
-                    .shadow(color: .slCornflowerBlue, radius: 20, x: 0, y: 0)
+                    .clipShape(Circle())
+                    .shadow(color: .black, radius: 20, x: 0, y: 0)
                 
-                Text("@\(username)")
+                Text("\(title)")
                     .font(.system(size: 16,
                                   weight: .medium,
                                   design: .rounded))
                     .foregroundColor(.black)
                     .shadow(radius: 10)
             })
-
-//            Spacer()
         })
-    }
-}
-
-struct SLProfileHeaderView_Previews: PreviewProvider {
-    static var previews: some View {
-        SLProfileHeaderView(image: UIImage(named: "test_avatar"),
-                            username: "artyombatura")
     }
 }
