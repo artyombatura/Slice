@@ -32,8 +32,8 @@ struct SliceApp: App {
             } else {
                 NavigationView(content: {
                     LoginView()
-                        .environmentObject(appViewModel)
                 })
+                    .environmentObject(appViewModel)
             }
         }
     }
