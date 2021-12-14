@@ -120,7 +120,11 @@ struct ProfileView: View {
                     })
 
                     ForEach(viewModel.orders, id: \.id, content: { order in
-                        OrderRow(order: order)
+                        NavigationLink(destination: { CartView(cart: .constant(Cart(dishes: order.dishes)))}, label: {
+                            OrderRow(order: order)
+                        })
+                            .buttonStyle(PlainButtonStyle())
+                            
                     })
                         .padding(.top, 10)
                 })

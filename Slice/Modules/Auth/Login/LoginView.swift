@@ -14,6 +14,8 @@ struct LoginView: View {
     @State private var login: String = ""
     @State private var password: String = ""
     
+    @State private var isError: Bool = false
+    
     let userService: UserServiceProtocol = MockUserService()
     
     var body: some View {
@@ -54,9 +56,13 @@ struct LoginView: View {
                     userService.login(login: login,
                                       password: password,
                                       completion: { user in
-                        appViewModel.user = user
-                        
-                        appViewModel.isUserLoggedIn.toggle()
+                        if let user = user {
+                            appViewModel.user = user
+                            
+                            appViewModel.isUserLoggedIn.toggle()
+                        } else {
+                            isError.toggle()
+                        }
                     })
                 }
             }, label: {
@@ -79,5 +85,6 @@ struct LoginView: View {
             
             Spacer()
         })
+            .alert("Ошибка авторизации", isPresented: $isError, actions: { })
     }
 }

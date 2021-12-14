@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User {
+struct User: Codable {
     var id: String
     
     var username: String
@@ -18,14 +18,46 @@ struct User {
     
     var email: String
     
-    var avatarURL: String
+    var avatarURL: String? = "https://i.pinimg.com/736x/26/bd/ad/26bdad3d88dd702a548f1cfe46513574.jpg"
     
-    static let testUser = User(id: UUID().uuidString,
-                               username: "artyombatura",
-                               name: "Артем",
-                               surname: "Батура",
-                               email: "artyombatura@gmail.com",
-                               avatarURL: "https://i.pinimg.com/736x/26/bd/ad/26bdad3d88dd702a548f1cfe46513574.jpg")
+    var password: String
+
+    enum CodingKeys: String, CodingKey {
+        case id, username, name, surname, email, password
+    }
+    
+    init(id: String, username: String, name: String, surname: String, email: String, password: String) {
+        self.id = id
+        self.username = username
+        self.name = name
+        self.surname = surname
+        self.email = email
+        self.password = password
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        id = try container.decode(String.self, forKey: .id)
+        username = try container.decode(String.self, forKey: .username)
+        name = try container.decode(String.self, forKey: .name)
+        surname = try container.decode(String.self, forKey: .surname)
+        email = try container.decode(String.self, forKey: .email)
+        password = try container.decode(String.self, forKey: .password)
+    }
+    
+    var jsonRep: String {
+        """
+        {
+            "id": \(id),
+            "username": \(username),
+            "name": \(name),
+            "surname": \(surname),
+            "email": \(email),
+            "password": \(password)
+        }
+        """
+    }
 }
 
 struct Order: Codable {

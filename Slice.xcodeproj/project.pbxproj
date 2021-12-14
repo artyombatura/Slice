@@ -38,6 +38,8 @@
 		0FE9DFA9274A602800AE15B5 /* LatestRestaurantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE9DFA8274A602800AE15B5 /* LatestRestaurantsView.swift */; };
 		0FE9DFAC274A607200AE15B5 /* SLUnderTitledViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE9DFAB274A607200AE15B5 /* SLUnderTitledViewModifier.swift */; };
 		0FE9DFB7274AD6FC00AE15B5 /* AllRestaurantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE9DFB6274AD6FC00AE15B5 /* AllRestaurantsView.swift */; };
+		0FF21E9C2768779500FFCDDC /* MockedUsers.json in Resources */ = {isa = PBXBuildFile; fileRef = 0FF21E9B2768779500FFCDDC /* MockedUsers.json */; };
+		0FF21E9E27689B3900FFCDDC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0FF21E9D27689B3900FFCDDC /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +74,8 @@
 		0FE9DFA8274A602800AE15B5 /* LatestRestaurantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestRestaurantsView.swift; sourceTree = "<group>"; };
 		0FE9DFAB274A607200AE15B5 /* SLUnderTitledViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLUnderTitledViewModifier.swift; sourceTree = "<group>"; };
 		0FE9DFB6274AD6FC00AE15B5 /* AllRestaurantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRestaurantsView.swift; sourceTree = "<group>"; };
+		0FF21E9B2768779500FFCDDC /* MockedUsers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockedUsers.json; sourceTree = "<group>"; };
+		0FF21E9D27689B3900FFCDDC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +180,7 @@
 			children = (
 				0F769060275D3B8D006836F2 /* UserService.swift */,
 				0F769062275D3B95006836F2 /* MockUserService.swift */,
+				0FF21E9B2768779500FFCDDC /* MockedUsers.json */,
 			);
 			path = UserService;
 			sourceTree = "<group>";
@@ -226,6 +231,7 @@
 				0FACF7B3274122CE00B55423 /* Modules */,
 				0FACF7A5274122B000B55423 /* SliceApp.swift */,
 				0FACF7A7274122B000B55423 /* ContentView.swift */,
+				0FF21E9D27689B3900FFCDDC /* GoogleService-Info.plist */,
 				0FACF7A9274122B200B55423 /* Assets.xcassets */,
 				0FACF7AB274122B200B55423 /* Preview Content */,
 			);
@@ -412,7 +418,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F76906C275D43B5006836F2 /* MockedRestaurants.json in Resources */,
+				0FF21E9E27689B3900FFCDDC /* GoogleService-Info.plist in Resources */,
 				0FACF7AD274122B200B55423 /* Preview Assets.xcassets in Resources */,
+				0FF21E9C2768779500FFCDDC /* MockedUsers.json in Resources */,
 				0FACF7AA274122B200B55423 /* Assets.xcassets in Resources */,
 				0F769073275D4DA8006836F2 /* MockedOrders.json in Resources */,
 			);

@@ -10,12 +10,12 @@ import Foundation
 protocol UserServiceProtocol {
     func login(login: String,
                password: String,
-               completion: @escaping (User) -> Void)
+               completion: @escaping (User?) -> Void)
     
     func signup(login: String,
                 password: String,
                 firstName: String,
                 lastName: String,
                 email: String,
-                completion: @escaping (User) -> Void)
+                completion: @escaping (User?) -> Void)
 }

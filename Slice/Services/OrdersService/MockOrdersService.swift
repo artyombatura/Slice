@@ -19,7 +19,9 @@ class MockOrdersService: OrdersServiceProtocol {
                 let jsonDecoder = JSONDecoder()
                 
                 if let orders = try? jsonDecoder.decode([Order].self, from: data) {
-                    completion(orders)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                        completion(orders)
+                    })
                 }
             }
         }
