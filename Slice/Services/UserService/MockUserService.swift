@@ -78,40 +78,8 @@ extension MockUserService {
                     
                     let end = "]"
                     
-                    var final = alllUsersJsonSTart + allUsersContent + end
+                    var _ = alllUsersJsonSTart + allUsersContent + end
 
-
-//                    if let documentDirectory = FileManager.default.urls(for: .documentDirectory,
-//                                                                        in: .userDomainMask).first {
-//                        let pathWithFilename = documentDirectory.appendingPathComponent("MockedUsers.json")
-//                        do {
-//                            try final.write(to: pathWithFilename,
-//                                                 atomically: true,
-//                                                 encoding: .utf8)
-//                        } catch {
-//                            // Handle error
-//                            print("")
-//                        }
-//                    }
-//
-//                    if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-//
-//                        let fileURL = dir.appendingPathComponent(file)
-//
-//                        //writing
-//                        do {
-//                            try text.write(to: fileURL, atomically: false, encoding: .utf8)
-//                        }
-//                        catch {/* error handling here */}
-//
-//                        //reading
-//                        do {
-//                            let text2 = try String(contentsOf: fileURL, encoding: .utf8)
-//                        }
-//                        catch {/* error handling here */}
-//                    }
-//                    
-                    
                     return newUser
                 }
             }
