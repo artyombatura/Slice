@@ -28,6 +28,10 @@
 		0F76906F275D4D2C006836F2 /* OrdersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76906E275D4D2C006836F2 /* OrdersService.swift */; };
 		0F769071275D4D77006836F2 /* MockOrdersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F769070275D4D77006836F2 /* MockOrdersService.swift */; };
 		0F769073275D4DA8006836F2 /* MockedOrders.json in Resources */ = {isa = PBXBuildFile; fileRef = 0F769072275D4DA8006836F2 /* MockedOrders.json */; };
+		0F8AB00A282D7C4800744315 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB009282D7C4800744315 /* NetworkManager.swift */; };
+		0F8AB00C282D7E8200744315 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB00B282D7E8200744315 /* HTTPMethod.swift */; };
+		0F8AB00E282D7EA700744315 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB00D282D7EA700744315 /* Endpoint.swift */; };
+		0F8AB012282D80A200744315 /* Signup+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB011282D80A200744315 /* Signup+Endpoint.swift */; };
 		0FACF7A6274122B000B55423 /* SliceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF7A5274122B000B55423 /* SliceApp.swift */; };
 		0FACF7A8274122B000B55423 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF7A7274122B000B55423 /* ContentView.swift */; };
 		0FACF7AA274122B200B55423 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FACF7A9274122B200B55423 /* Assets.xcassets */; };
@@ -61,6 +65,10 @@
 		0F76906E275D4D2C006836F2 /* OrdersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersService.swift; sourceTree = "<group>"; };
 		0F769070275D4D77006836F2 /* MockOrdersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOrdersService.swift; sourceTree = "<group>"; };
 		0F769072275D4DA8006836F2 /* MockedOrders.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockedOrders.json; sourceTree = "<group>"; };
+		0F8AB009282D7C4800744315 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		0F8AB00B282D7E8200744315 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		0F8AB00D282D7EA700744315 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		0F8AB011282D80A200744315 /* Signup+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Signup+Endpoint.swift"; sourceTree = "<group>"; };
 		0FACF7A2274122B000B55423 /* Slice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FACF7A5274122B000B55423 /* SliceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliceApp.swift; sourceTree = "<group>"; };
 		0FACF7A7274122B000B55423 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -174,6 +182,7 @@
 		0F76905F275D3B81006836F2 /* UserService */ = {
 			isa = PBXGroup;
 			children = (
+				0F8AB010282D809300744315 /* Endpoints */,
 				0F769060275D3B8D006836F2 /* UserService.swift */,
 				0F769062275D3B95006836F2 /* MockUserService.swift */,
 			);
@@ -200,6 +209,24 @@
 			path = OrdersService;
 			sourceTree = "<group>";
 		};
+		0F8AB008282D7C2700744315 /* NetworkLayer */ = {
+			isa = PBXGroup;
+			children = (
+				0F8AB009282D7C4800744315 /* NetworkManager.swift */,
+				0F8AB00B282D7E8200744315 /* HTTPMethod.swift */,
+				0F8AB00D282D7EA700744315 /* Endpoint.swift */,
+			);
+			path = NetworkLayer;
+			sourceTree = "<group>";
+		};
+		0F8AB010282D809300744315 /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				0F8AB011282D80A200744315 /* Signup+Endpoint.swift */,
+			);
+			path = Endpoints;
+			sourceTree = "<group>";
+		};
 		0FACF799274122B000B55423 = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +246,7 @@
 		0FACF7A4274122B000B55423 /* Slice */ = {
 			isa = PBXGroup;
 			children = (
+				0F8AB008282D7C2700744315 /* NetworkLayer */,
 				0F76905E275D3B77006836F2 /* Services */,
 				0FE9DFAD274ACFF200AE15B5 /* App */,
 				0FE9DF9D274A5F1500AE15B5 /* Models */,
@@ -266,7 +294,6 @@
 		0FACF7B5274122E200B55423 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
-				0FACF7B82741230200B55423 /* Model */,
 				0FACF7B6274122ED00B55423 /* View */,
 				0FACF7B7274122F100B55423 /* ModelView */,
 			);
@@ -292,13 +319,6 @@
 			path = ModelView;
 			sourceTree = "<group>";
 		};
-		0FACF7B82741230200B55423 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		0FACF7BB2741237000B55423 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,16 +333,8 @@
 		0FE9DF9D274A5F1500AE15B5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0FE9DFA7274A5FDC00AE15B5 /* UserModels */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		0FE9DFA7274A5FDC00AE15B5 /* UserModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UserModels;
 			sourceTree = "<group>";
 		};
 		0FE9DFAA274A606000AE15B5 /* ViewModifiers */ = {
@@ -425,6 +437,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F8AB00A282D7C4800744315 /* NetworkManager.swift in Sources */,
+				0F8AB00E282D7EA700744315 /* Endpoint.swift in Sources */,
 				0F662C7D2759891500C71A41 /* User.swift in Sources */,
 				0FACF7BF2741262600B55423 /* SLProfileHeaderView.swift in Sources */,
 				0F662C8127598DA100C71A41 /* RestaurantView.swift in Sources */,
@@ -440,10 +454,12 @@
 				0F769053275CD00C006836F2 /* RestaurantDetailView.swift in Sources */,
 				0FE9DFAC274A607200AE15B5 /* SLUnderTitledViewModifier.swift in Sources */,
 				0F76905B275D0D3A006836F2 /* LoginView.swift in Sources */,
+				0F8AB00C282D7E8200744315 /* HTTPMethod.swift in Sources */,
 				0FACF7A8274122B000B55423 /* ContentView.swift in Sources */,
 				0F769055275CD470006836F2 /* DishView.swift in Sources */,
 				0FACF7BD2741239D00B55423 /* SLCircleView.swift in Sources */,
 				0F769068275D3F3E006836F2 /* RestaurantsService.swift in Sources */,
+				0F8AB012282D80A200744315 /* Signup+Endpoint.swift in Sources */,
 				0F769061275D3B8D006836F2 /* UserService.swift in Sources */,
 				0F76906F275D4D2C006836F2 /* OrdersService.swift in Sources */,
 				0F76905D275D0EE3006836F2 /* ProfileView.swift in Sources */,

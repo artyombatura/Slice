@@ -32,6 +32,9 @@ struct SliceApp: App {
             } else {
                 NavigationView(content: {
                     LoginView()
+//						.onAppear(perform: {
+//							UserService().signup(login: "albert", password: "123", firstName: "Albert", lastName: "Test", email: "albert@gmail.com", completion: { _ in })
+//						})
                 })
                     .environmentObject(appViewModel)
             }
