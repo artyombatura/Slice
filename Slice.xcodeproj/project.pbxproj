@@ -32,6 +32,11 @@
 		0F8AB00C282D7E8200744315 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB00B282D7E8200744315 /* HTTPMethod.swift */; };
 		0F8AB00E282D7EA700744315 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB00D282D7EA700744315 /* Endpoint.swift */; };
 		0F8AB012282D80A200744315 /* Signup+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB011282D80A200744315 /* Signup+Endpoint.swift */; };
+		0F8AB01528364FC800744315 /* TestNetworkExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB01428364FC700744315 /* TestNetworkExecutor.swift */; };
+		0F8AB0182836506200744315 /* Login+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB0172836506200744315 /* Login+Endpoint.swift */; };
+		0F8AB01A2836524400744315 /* APIResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB0192836524400744315 /* APIResults.swift */; };
+		0F8AB01C2836554600744315 /* ListRestaurants+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB01B2836554600744315 /* ListRestaurants+Endpoint.swift */; };
+		0F8AB01E28365D1B00744315 /* Orders+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB01D28365D1B00744315 /* Orders+Endpoint.swift */; };
 		0FACF7A6274122B000B55423 /* SliceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF7A5274122B000B55423 /* SliceApp.swift */; };
 		0FACF7A8274122B000B55423 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF7A7274122B000B55423 /* ContentView.swift */; };
 		0FACF7AA274122B200B55423 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FACF7A9274122B200B55423 /* Assets.xcassets */; };
@@ -69,6 +74,11 @@
 		0F8AB00B282D7E8200744315 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		0F8AB00D282D7EA700744315 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		0F8AB011282D80A200744315 /* Signup+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Signup+Endpoint.swift"; sourceTree = "<group>"; };
+		0F8AB01428364FC700744315 /* TestNetworkExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNetworkExecutor.swift; sourceTree = "<group>"; };
+		0F8AB0172836506200744315 /* Login+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Login+Endpoint.swift"; sourceTree = "<group>"; };
+		0F8AB0192836524400744315 /* APIResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResults.swift; sourceTree = "<group>"; };
+		0F8AB01B2836554600744315 /* ListRestaurants+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListRestaurants+Endpoint.swift"; sourceTree = "<group>"; };
+		0F8AB01D28365D1B00744315 /* Orders+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Orders+Endpoint.swift"; sourceTree = "<group>"; };
 		0FACF7A2274122B000B55423 /* Slice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FACF7A5274122B000B55423 /* SliceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliceApp.swift; sourceTree = "<group>"; };
 		0FACF7A7274122B000B55423 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -212,9 +222,12 @@
 		0F8AB008282D7C2700744315 /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
+				0F8AB01628364FEB00744315 /* Endpoints */,
+				0F8AB01328364FB700744315 /* TestExecutor */,
 				0F8AB009282D7C4800744315 /* NetworkManager.swift */,
 				0F8AB00B282D7E8200744315 /* HTTPMethod.swift */,
 				0F8AB00D282D7EA700744315 /* Endpoint.swift */,
+				0F8AB0192836524400744315 /* APIResults.swift */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -222,7 +235,25 @@
 		0F8AB010282D809300744315 /* Endpoints */ = {
 			isa = PBXGroup;
 			children = (
+			);
+			path = Endpoints;
+			sourceTree = "<group>";
+		};
+		0F8AB01328364FB700744315 /* TestExecutor */ = {
+			isa = PBXGroup;
+			children = (
+				0F8AB01428364FC700744315 /* TestNetworkExecutor.swift */,
+			);
+			path = TestExecutor;
+			sourceTree = "<group>";
+		};
+		0F8AB01628364FEB00744315 /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
 				0F8AB011282D80A200744315 /* Signup+Endpoint.swift */,
+				0F8AB0172836506200744315 /* Login+Endpoint.swift */,
+				0F8AB01B2836554600744315 /* ListRestaurants+Endpoint.swift */,
+				0F8AB01D28365D1B00744315 /* Orders+Endpoint.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -437,6 +468,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F8AB01E28365D1B00744315 /* Orders+Endpoint.swift in Sources */,
 				0F8AB00A282D7C4800744315 /* NetworkManager.swift in Sources */,
 				0F8AB00E282D7EA700744315 /* Endpoint.swift in Sources */,
 				0F662C7D2759891500C71A41 /* User.swift in Sources */,
@@ -452,18 +484,22 @@
 				0F662C7A275987DB00C71A41 /* OrderShortInfoView.swift in Sources */,
 				0FE9DFB7274AD6FC00AE15B5 /* AllRestaurantsView.swift in Sources */,
 				0F769053275CD00C006836F2 /* RestaurantDetailView.swift in Sources */,
+				0F8AB01C2836554600744315 /* ListRestaurants+Endpoint.swift in Sources */,
 				0FE9DFAC274A607200AE15B5 /* SLUnderTitledViewModifier.swift in Sources */,
 				0F76905B275D0D3A006836F2 /* LoginView.swift in Sources */,
 				0F8AB00C282D7E8200744315 /* HTTPMethod.swift in Sources */,
 				0FACF7A8274122B000B55423 /* ContentView.swift in Sources */,
 				0F769055275CD470006836F2 /* DishView.swift in Sources */,
+				0F8AB0182836506200744315 /* Login+Endpoint.swift in Sources */,
 				0FACF7BD2741239D00B55423 /* SLCircleView.swift in Sources */,
 				0F769068275D3F3E006836F2 /* RestaurantsService.swift in Sources */,
 				0F8AB012282D80A200744315 /* Signup+Endpoint.swift in Sources */,
+				0F8AB01528364FC800744315 /* TestNetworkExecutor.swift in Sources */,
 				0F769061275D3B8D006836F2 /* UserService.swift in Sources */,
 				0F76906F275D4D2C006836F2 /* OrdersService.swift in Sources */,
 				0F76905D275D0EE3006836F2 /* ProfileView.swift in Sources */,
 				0F769063275D3B95006836F2 /* MockUserService.swift in Sources */,
+				0F8AB01A2836524400744315 /* APIResults.swift in Sources */,
 				0F769051275CCF41006836F2 /* HomeViewViewModel.swift in Sources */,
 				0F769065275D3D52006836F2 /* SignupView.swift in Sources */,
 				0FACF7A6274122B000B55423 /* SliceApp.swift in Sources */,

@@ -30,7 +30,7 @@ class NetworkCaller {
 			.dataTask(with: request) { data, response, error in
 				
 				if let data = data {
-					print(String(data: data, encoding: .utf8))
+					print("\n\n$0: Request \(endpoint.path) ended with data: \(String(data: data, encoding: .utf8))\n\n")
 				}
 				
 				if let error = error {
