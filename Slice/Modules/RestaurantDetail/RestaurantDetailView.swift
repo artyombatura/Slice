@@ -9,13 +9,10 @@ import Foundation
 import SwiftUI
 
 struct Cart {
-    var dishes = [Dish]()
-	
 	var allDishes = [APIResults.DishAPI]()
     
     var totalSum: Double {
         var sum: Double = 0
-//        dishes.forEach {  sum += $0.price }
 		allDishes.forEach { sum += (Double($0.price) ?? 0.0) }
         return sum
     }
@@ -36,18 +33,25 @@ struct RestaurantDetailView: View {
     
     @StateObject var viewModel = RestaurantDetailViewModel()
     
-    var restaurant: Restaurant
+	var restaurant: APIResults.RestaurantAPI
     
     var gridItems: [GridItem] = [GridItem(.flexible()), GridItem(.flexible()),]
     
     @State private var isDatePickVisible: Bool = false
+	
+	@State private var menu: [APIResults.DishAPI] = []
+	
+	let restsService: RestaurantServiceAPI = Service.Restaurant.shared
+	
+	@State private var errorText: String = ""
+	@State private var isErrorDisplayed: Bool = false
     
     var body: some View {
         ZStack(content: {
             // MARK: - Main Section
             ScrollView(content: {
                 VStack(content: {
-                    SLProfileHeaderView(imageURL: restaurant.photoURL,
+                    SLProfileHeaderView(imageURL: restaurant.verifiedPhotoURL,
                                         title: "")
                     
                     Text(restaurant.description)
@@ -78,11 +82,11 @@ struct RestaurantDetailView: View {
                     Divider()
                     
                     LazyVGrid(columns: gridItems, spacing: 16, content: {
-                        ForEach(restaurant.menu, id: \.id, content: { dish in
-                            NavigationLink(destination: { DishDetailView(dish: dish, addCallback: { viewModel.cart.dishes.append($0) }) },
+                        ForEach(menu, id: \.id, content: { dish in
+							NavigationLink(destination: { DishDetailView(dish: dish, addCallback: { viewModel.cart.allDishes.append($0) }) },
                                            label: {
                                 DishView(dish: dish, addCallback: { dish in
-                                    viewModel.cart.dishes.append(dish)
+                                    viewModel.cart.allDishes.append(dish)
                                 })
                                     .aspectRatio(1.0, contentMode: .fill)
                             })
@@ -106,14 +110,15 @@ struct RestaurantDetailView: View {
                         Text(viewModel.isDelayedOrder ? "Заказать на время" : "Заказать")
                     )
                     .onTapGesture {
-                        print("Заказ отложенный? - \(viewModel.isDelayedOrder)")
-                        
-                        let newOrder = Order(id: UUID().uuidString,
-                                             isActive: true,
-                                             restaurantName: restaurant.name,
-                                             dishes: viewModel.cart.dishes)
-                        
-                        appViewModel.newOrderSubject.send(newOrder)
+						// MARK: - TODO
+//                        print("Заказ отложенный? - \(viewModel.isDelayedOrder)")
+//
+//                        let newOrder = Order(id: UUID().uuidString,
+//                                             isActive: true,
+//                                             restaurantName: restaurant.name,
+//                                             dishes: [])
+////
+//                        appViewModel.newOrderSubject.send(newOrder)
                     }
                     .onLongPressGesture(perform: {
                         isDatePickVisible.toggle()
@@ -124,5 +129,19 @@ struct RestaurantDetailView: View {
             .padding(.horizontal, 16)
         })
         .navigationTitle(restaurant.name)
+		.alert(errorText,
+			   isPresented: $isErrorDisplayed,
+			   actions: { EmptyView() })
+		.onAppear {
+			restsService.fetchMenu(for: restaurant.id) { result in
+				switch result {
+				case let .success(menu):
+					DispatchQueue.main.async {
+						self.menu = menu
+					}
+				default: break
+				}
+			}
+		}
     }
 }

@@ -8,16 +8,14 @@
 import Foundation
 import SwiftUI
 
-//class
-
 struct DishDetailView: View {
-    var dish: Dish
+	var dish: APIResults.DishAPI
     
-    var addCallback: (Dish) -> Void
+    var addCallback: (APIResults.DishAPI) -> Void
     
     var body: some View {
         ScrollView(content: {
-            AsyncImage(url: URL(string: dish.photoURL), placeholder: { Image(uiImage: UIImage(named: "dish_placeholder") ?? UIImage()) })
+			AsyncImage(url: URL(string: dish.verifiedPhotoURL), placeholder: { Image(uiImage: UIImage(named: "dish_placeholder") ?? UIImage()) })
                 .aspectRatio(1.0, contentMode: .fill)
             
             Button(action: {
@@ -31,7 +29,7 @@ struct DishDetailView: View {
             })
             
             HStack(content: {
-                Text("Время приготовления: \(dish.estimatedCookingTime) мин.")
+				Text("Время приготовления: \(dish.estimatedTime) мин.")
                     .font(.system(size: 20,
                                   weight: .bold,
                                   design: .rounded))
@@ -42,7 +40,7 @@ struct DishDetailView: View {
                 .padding(.leading, 8)
             
             HStack(content: {
-                Text("Вес блюда: \(Int(dish.weight ?? 0.0)) г.")
+				Text("Вес блюда: \(dish.weight) г.")
                     .font(.system(size: 20,
                                   weight: .bold,
                                   design: .rounded))
@@ -51,6 +49,30 @@ struct DishDetailView: View {
                 Spacer()
             })
                 .padding(.leading, 8)
+			
+			if let type = dish.dishType {
+				HStack(content: {
+					Text("Тип блюда: \(type)")
+						.font(.system(size: 20,
+									  weight: .bold,
+									  design: .rounded))
+						.shadow(radius: 10)
+					
+					Spacer()
+				})
+					.padding(.leading, 8)
+			}
+			
+			HStack(content: {
+				Text("Цена: \(dish.price) руб.")
+					.font(.system(size: 20,
+								  weight: .bold,
+								  design: .rounded))
+					.shadow(radius: 10)
+				
+				Spacer()
+			})
+				.padding(.leading, 8)
             
             VStack(spacing: 16, content: {
                 HStack(content: {
@@ -77,7 +99,32 @@ struct DishDetailView: View {
                 .padding(.top, 20)
             
             
+			if let country = dish.country {
+				VStack(spacing: 16) {
+					HStack(content: {
+						Text("Страна: \(country.name)")
+							.font(.system(size: 20,
+										  weight: .bold,
+										  design: .rounded))
+							.shadow(radius: 10)
+						
+						Spacer()
+					})
+					
+					HStack(content: {
+						Text(country.description)
+							.font(.system(size: 20,
+										  weight: .regular,
+										  design: .rounded))
+							.shadow(radius: 10)
+						
+						Spacer()
+					})
+				}
+				.padding(.leading, 8)
+				.padding(.top, 20)
+			}
         })
-        .navigationTitle(dish.name)
+		.navigationTitle(dish.name)
     }
 }

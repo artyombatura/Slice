@@ -13,15 +13,15 @@ struct CartView: View {
         
     var body: some View {
         List(content: {
-            ForEach(cart.dishes, id: \.id, content: { dishFromCart in
+			ForEach(cart.allDishes, id: \.id, content: { dishFromCart in
                 HStack(content: {
-                    AsyncImage(url: URL(string: dishFromCart.photoURL), placeholder: { Rectangle().foregroundColor(.gray) })
+					AsyncImage(url: URL(string: dishFromCart.verifiedPhotoURL), placeholder: { Rectangle().foregroundColor(.gray) })
                             .frame(width: 100, height: 100)
                             .clipShape(
                                 RoundedRectangle(cornerRadius: 10)
                             )
                     
-                    Text(dishFromCart.name)
+					Text(dishFromCart.name)
                         .font(.system(size: 20,
                                       weight: .regular,
                                       design: .rounded))
@@ -38,10 +38,10 @@ struct CartView: View {
                     delete(at: index)
                 }
         })
-            .navigationTitle("Заказ: \(cart.totalSum) руб.")
+			.navigationTitle("Заказ: \(cart.totalSum.stringWithNDecimalPlaces(2)) руб.")
     }
     
     func delete(at offsets: IndexSet) {
-        cart.dishes.remove(atOffsets: offsets)
+        cart.allDishes.remove(atOffsets: offsets)
     }
 }

@@ -9,12 +9,12 @@ import Foundation
 import SwiftUI
 
 struct DishView: View {
-    var dish: Dish
+	var dish: APIResults.DishAPI
     
-    var addCallback: (Dish) -> Void
+    var addCallback: (APIResults.DishAPI) -> Void
     
     var body: some View {
-        AsyncImage(url: URL(string: dish.photoURL),
+		AsyncImage(url: URL(string: dish.verifiedPhotoURL),
                    placeholder: { Color.gray })
             .overlay(
                 Color.black.opacity(0.6)

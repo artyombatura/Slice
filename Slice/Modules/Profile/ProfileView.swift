@@ -93,7 +93,8 @@ struct ProfileView: View {
                 
                 Divider()
                 
-                LatestRestaurantsView(restaurants: viewModel.latestRestaurants)
+				// MARK: - TODO LAST VISITED RESTS
+//                LatestRestaurantsView(restaurants: viewModel.latestRestaurants)
                 
                 Divider()
                 

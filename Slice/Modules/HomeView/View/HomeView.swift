@@ -10,11 +10,11 @@ import SwiftUI
 
 class HomeViewViewModel: ObservableObject {
 	// old
-    var restaurantsService: RestaurantsServiceProtocol = MockRestaurantsService()
-    
-    @Published var latestRestaurants = [Restaurant]()
-    
-    @Published var restaurants = [Restaurant]()
+//    var restaurantsService: RestaurantsServiceProtocol = MockRestaurantsService()
+//    
+//    @Published var latestRestaurants = [Restaurant]()
+//    
+//    @Published var restaurants = [Restaurant]()
 	
 	// new
 	let restsService: RestaurantServiceAPI = Service.Restaurant.shared
@@ -48,17 +48,23 @@ class HomeViewViewModel: ObservableObject {
 			}
 		}
 		
-        restaurantsService.getRestaurants { rests in
-            self.restaurants = rests
-        }
-
-        restaurantsService.getLastRestaurants { rests in
-            self.latestRestaurants = rests
-        }
+//        restaurantsService.getRestaurants { rests in
+//            self.restaurants = rests
+//        }
+//
+//        restaurantsService.getLastRestaurants { rests in
+//            self.latestRestaurants = rests
+//        }
     }
 }
 
 struct HomeView: View {
+	enum RestsSections: String {
+		case all = "Все заведения"
+		case lastVisited = "Последние посещенные"
+		case popular = "Популярные"
+	}
+	
     @EnvironmentObject var appViewModel: AppViewModel
     
     @StateObject var viewModel = HomeViewViewModel()
@@ -75,11 +81,15 @@ struct HomeView: View {
                     
                     Divider()
 
-                    LatestRestaurantsView(restaurants: viewModel.latestRestaurants)
+					SecondaryRestaurantsView(restaurants: viewModel.lastVisitedRests, title: RestsSections.lastVisited.rawValue)
                     
                     Divider()
+					
+					SecondaryRestaurantsView(restaurants: viewModel.popularRests, title: RestsSections.popular.rawValue)
+					
+					Divider()
                     
-                    AllRestaurantsView(restaurants: viewModel.restaurants)
+					RestaurantsView(rests: viewModel.allRests, title: RestsSections.all.rawValue)
                 })
             })
 			.navigationTitle("@\(appViewModel.loggedUser?.username ?? "")")

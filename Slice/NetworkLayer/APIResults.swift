@@ -53,6 +53,10 @@ extension APIResults {
 		let phoneNumber: String
 		let photoURL: String?
 		
+		var verifiedPhotoURL: String {
+			photoURL ?? "https://e3.edimdoma.ru/data/posts/0002/4192/24192-ed4_wide.jpg?1632496783"
+		}
+		
 		enum CodingKeys: String, CodingKey {
 			case id, name, description, address
 			case phoneNumber = "phone_number"
@@ -74,6 +78,10 @@ extension APIResults {
 		let photoURL: String?
 		let dishType: String?
 		let country: CountryAPI?
+		
+		var verifiedPhotoURL: String {
+			photoURL ?? "https://p.kindpng.com/picc/s/79-798754_hoteles-y-centros-vacacionales-dish-placeholder-hd-png.png"
+		}
 		
 		enum CodingKeys: String, CodingKey {
 			case id, name, description, weight, price, country

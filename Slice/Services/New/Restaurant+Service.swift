@@ -13,6 +13,8 @@ protocol RestaurantServiceAPI {
 	func fetchPopularRests(completion: @escaping (Result<[APIResults.RestaurantAPI], Service.ServiceError>) -> Void)
 	
 	func fetchLastVisitedRests(completion: @escaping (Result<[APIResults.RestaurantAPI], Service.ServiceError>) -> Void)
+	
+	func fetchMenu(for id: Int, completion: @escaping (Result<[APIResults.DishAPI], Service.ServiceError>) -> Void)
 }
 
 extension Service {
@@ -53,6 +55,15 @@ extension Service {
 		}
 		
 		// MARK: - Create order
+		
+		// MARK: - Fetch menu
+		
+		func fetchMenu(for id: Int, completion: @escaping (Result<[APIResults.DishAPI], Service.ServiceError>) -> Void) {
+			let endpoint = Endpoint.ListRestaurants.restaurantMenuEndpoint(with: id)
+			NetworkCaller.shared.call(for: endpoint,
+										 resultType: [APIResults.DishAPI].self,
+										 completion: completion)
+		}
 	}
 }
 

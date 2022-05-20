@@ -8,14 +8,16 @@
 import Foundation
 import SwiftUI
 
-struct LatestRestaurantsView: View {
+struct SecondaryRestaurantsView: View {
     // MARK: - Test; Refactor to view models
-    var restaurants: [Restaurant] = .init(repeating: .testRestaurant, count: 3)
+	var restaurants: [APIResults.RestaurantAPI] = []
+	
+	var title: String
     
     var body: some View {
         VStack(content: {
             HStack(content: {
-                Text("Последние посещенные")
+                Text(title)
                     .font(.system(size: 24,
                                   weight: .bold,
                                   design: .rounded))
@@ -32,7 +34,7 @@ struct LatestRestaurantsView: View {
                     HStack(alignment: .top, spacing: 10, content: {
                         ForEach(restaurants, id: \.id, content: { restaurant in
                             NavigationLink(destination: RestaurantDetailView(restaurant: restaurant), label: {
-                                AsyncImage(url: URL(string: restaurant.photoURL), placeholder: { Circle().foregroundColor(.gray) })
+                                AsyncImage(url: URL(string: restaurant.verifiedPhotoURL), placeholder: { Circle().foregroundColor(.gray) })
                                     .frame(width: 90, height: 90)
                                     .clipShape(Circle())
                                     .undertitled(with: restaurant.name, color: .black)

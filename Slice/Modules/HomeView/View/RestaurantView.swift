@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 
 struct RestaurantView: View {
-    var restaurant: Restaurant
+	var restaurant: APIResults.RestaurantAPI
     
     var body: some View {
-        AsyncImage(url: URL(string: restaurant.photoURL),
+        AsyncImage(url: URL(string: restaurant.verifiedPhotoURL),
                    placeholder: { Color.gray })
             .overlay(
                 Color.black.opacity(0.6)
@@ -47,8 +47,8 @@ struct RestaurantView: View {
     }
 }
 
-struct RestaurantView_Preview: PreviewProvider {
-    static var previews: some View {
-        RestaurantView(restaurant: .testRestaurant)
-    }
-}
+//struct RestaurantView_Preview: PreviewProvider {
+//    static var previews: some View {
+//        RestaurantView(restaurant: .testRestaurant)
+//    }
+//}
