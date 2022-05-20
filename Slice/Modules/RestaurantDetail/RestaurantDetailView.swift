@@ -10,10 +10,13 @@ import SwiftUI
 
 struct Cart {
     var dishes = [Dish]()
+	
+	var allDishes = [APIResults.DishAPI]()
     
-    var totalSum: Int {
-        var sum: Int = 0
-        dishes.forEach {  sum += $0.price }
+    var totalSum: Double {
+        var sum: Double = 0
+//        dishes.forEach {  sum += $0.price }
+		allDishes.forEach { sum += (Double($0.price) ?? 0.0) }
         return sum
     }
 }
@@ -56,7 +59,7 @@ struct RestaurantDetailView: View {
                         CartView(cart: $viewModel.cart)
                     }, label: {
                         HStack(content: {
-                            Text("Корзина: \(viewModel.cart.totalSum) руб.")
+							Text("Корзина: \(viewModel.cart.totalSum.stringWithNDecimalPlaces(2)) руб.")
                                 .font(.system(size: 20,
                                               weight: .bold,
                                               design: .rounded))

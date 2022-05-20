@@ -8,3 +8,19 @@
 import Foundation
 
 enum Service { }
+
+extension Service {
+	enum ServiceError: Error {
+		case authTokenNotFound
+		
+		case notFound
+		
+		case decodingFailed(String)
+		
+		case other(String)
+	}
+}
+
+extension Service {
+	typealias LocalUserService = Service.UserService
+}

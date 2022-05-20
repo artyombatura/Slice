@@ -9,17 +9,49 @@ import Foundation
 import SwiftUI
 
 class HomeViewViewModel: ObservableObject {
+	// old
     var restaurantsService: RestaurantsServiceProtocol = MockRestaurantsService()
     
     @Published var latestRestaurants = [Restaurant]()
     
     @Published var restaurants = [Restaurant]()
+	
+	// new
+	let restsService: RestaurantServiceAPI = Service.Restaurant.shared
+	
+	@Published var allRests = [APIResults.RestaurantAPI]()
+	@Published var lastVisitedRests = [APIResults.RestaurantAPI]()
+	@Published var popularRests = [APIResults.RestaurantAPI]()
     
     init() {
+		restsService.fetchAllRests { result in
+			if case let .success(rests) = result {
+				DispatchQueue.main.async {
+					self.allRests = rests
+				}
+			}
+		}
+		
+		restsService.fetchLastVisitedRests { result in
+			if case let .success(rests) = result {
+				DispatchQueue.main.async {
+				self.lastVisitedRests = rests
+				}
+			}
+		}
+		
+		restsService.fetchPopularRests { result in
+			if case let .success(rests) = result {
+				DispatchQueue.main.async {
+				self.popularRests = rests
+				}
+			}
+		}
+		
         restaurantsService.getRestaurants { rests in
             self.restaurants = rests
         }
-        
+
         restaurantsService.getLastRestaurants { rests in
             self.latestRestaurants = rests
         }

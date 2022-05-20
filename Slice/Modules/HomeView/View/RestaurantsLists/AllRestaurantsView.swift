@@ -9,8 +9,11 @@ import Foundation
 import SwiftUI
 
 struct AllRestaurantsView: View {
-    // MARK: - Test; Refactor to view models
+	
+	// old
     var restaurants: [Restaurant]
+	// new
+	var rests: [APIResults.RestaurantAPI] = []
     
     var gridItems: [GridItem] = [GridItem(.flexible()), GridItem(.flexible()),]
     

@@ -15,9 +15,9 @@ protocol UserServiceAPI {
 				password: String,
 				completion: @escaping (Result<Void, Error>) -> Void)
 	
-	func login(username: String, password: String, completion: @escaping (Result<APIResults.LoginResultModel, Error>) -> Void)
+	func login(username: String, password: String, completion: @escaping (Result<APIResults.LoginResultModel, Service.ServiceError>) -> Void)
 	
-	func tryRelogin(completion: @escaping (Result<APIResults.LoginResultModel, Error>) -> Void)
+	func tryRelogin(completion: @escaping (Result<APIResults.LoginResultModel, Service.ServiceError>) -> Void)
 	
 	func logout()
 	
@@ -49,7 +49,7 @@ extension Service {
 			NetworkCaller.shared.simpleCall(for: endpoint, completion: completion)
 		}
 		
-		func login(username: String, password: String, completion: @escaping (Result<APIResults.LoginResultModel, Error>) -> Void) {
+		func login(username: String, password: String, completion: @escaping (Result<APIResults.LoginResultModel, ServiceError>) -> Void) {
 			let endpoint = Endpoint.Login.endpoint(username: username, password: password)
 			NetworkCaller.shared.call(for: endpoint,
 										 resultType: APIResults.LoginResultModel.self,
@@ -68,7 +68,7 @@ extension Service {
 			})
 		}
 		
-		func tryRelogin(completion: @escaping (Result<APIResults.LoginResultModel, Error>) -> Void) {
+		func tryRelogin(completion: @escaping (Result<APIResults.LoginResultModel, ServiceError>) -> Void) {
 			if let _ = getToken(),
 			   let creds = getCredentials() {
 				login(username: creds.0,

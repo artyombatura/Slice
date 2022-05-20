@@ -44,7 +44,7 @@ class NetworkCaller {
 		dataTask.resume()
 	}
 	
-	public func call<T: Decodable>(for endpoint: Endpoint, resultType: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
+	public func call<T: Decodable>(for endpoint: Endpoint, resultType: T.Type, completion: @escaping (Result<T, Service.ServiceError>) -> Void) {
 		var request = URLRequest(url: endpoint.url)
 		request.httpMethod = endpoint.method.rawValue
 		request.httpBody = endpoint.body?.data()
@@ -58,11 +58,12 @@ class NetworkCaller {
 		let dataTask = urlSession
 			.dataTask(with: request) { data, response, error in
 				if let error = error {
-					completion(.failure(error))
+					completion(.failure(.other(error.localizedDescription)))
 					return
 				}
 				
 				guard let data = data else {
+					completion(.failure(.notFound))
 					return
 				}
 		
@@ -70,7 +71,7 @@ class NetworkCaller {
 					let model = try JSONDecoder().decode(T.self, from: data)
 					completion(.success(model))
 				} catch let error {
-					completion(.failure(error))
+					completion(.failure(.decodingFailed(error.localizedDescription)))
 				}
 			}
 		
