@@ -50,7 +50,7 @@ struct HomeView: View {
                     AllRestaurantsView(restaurants: viewModel.restaurants)
                 })
             })
-            .navigationTitle("@\(appViewModel.user?.username ?? "")")
+			.navigationTitle("@\(appViewModel.loggedUser?.username ?? "")")
             
     }
 }

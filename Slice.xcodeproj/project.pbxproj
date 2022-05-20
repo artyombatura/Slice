@@ -38,6 +38,8 @@
 		0F8AB01C2836554600744315 /* ListRestaurants+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB01B2836554600744315 /* ListRestaurants+Endpoint.swift */; };
 		0F8AB01E28365D1B00744315 /* Orders+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB01D28365D1B00744315 /* Orders+Endpoint.swift */; };
 		0F8AB02028380CC100744315 /* Payments+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB01F28380CC100744315 /* Payments+Endpoint.swift */; };
+		0F8AB0272838128200744315 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB0262838128200744315 /* Service.swift */; };
+		0F8AB0292838128D00744315 /* User+Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB0282838128D00744315 /* User+Service.swift */; };
 		0FACF7A6274122B000B55423 /* SliceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF7A5274122B000B55423 /* SliceApp.swift */; };
 		0FACF7A8274122B000B55423 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF7A7274122B000B55423 /* ContentView.swift */; };
 		0FACF7AA274122B200B55423 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FACF7A9274122B200B55423 /* Assets.xcassets */; };
@@ -81,6 +83,8 @@
 		0F8AB01B2836554600744315 /* ListRestaurants+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListRestaurants+Endpoint.swift"; sourceTree = "<group>"; };
 		0F8AB01D28365D1B00744315 /* Orders+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Orders+Endpoint.swift"; sourceTree = "<group>"; };
 		0F8AB01F28380CC100744315 /* Payments+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Payments+Endpoint.swift"; sourceTree = "<group>"; };
+		0F8AB0262838128200744315 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		0F8AB0282838128D00744315 /* User+Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Service.swift"; sourceTree = "<group>"; };
 		0FACF7A2274122B000B55423 /* Slice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FACF7A5274122B000B55423 /* SliceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliceApp.swift; sourceTree = "<group>"; };
 		0FACF7A7274122B000B55423 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -184,6 +188,7 @@
 		0F76905E275D3B77006836F2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				0F8AB0252838126C00744315 /* New */,
 				0F76906D275D4D21006836F2 /* OrdersService */,
 				0F769066275D3F2A006836F2 /* RestaurantsService */,
 				0F76905F275D3B81006836F2 /* UserService */,
@@ -251,6 +256,15 @@
 				0F8AB01F28380CC100744315 /* Payments+Endpoint.swift */,
 			);
 			path = Endpoints;
+			sourceTree = "<group>";
+		};
+		0F8AB0252838126C00744315 /* New */ = {
+			isa = PBXGroup;
+			children = (
+				0F8AB0262838128200744315 /* Service.swift */,
+				0F8AB0282838128D00744315 /* User+Service.swift */,
+			);
+			path = New;
 			sourceTree = "<group>";
 		};
 		0FACF799274122B000B55423 = {
@@ -475,6 +489,7 @@
 				0F8AB012282D80A200744315 /* Signup+Endpoint.swift in Sources */,
 				0F8AB01528364FC800744315 /* TestNetworkExecutor.swift in Sources */,
 				0F769061275D3B8D006836F2 /* UserService.swift in Sources */,
+				0F8AB0272838128200744315 /* Service.swift in Sources */,
 				0F76906F275D4D2C006836F2 /* OrdersService.swift in Sources */,
 				0F76905D275D0EE3006836F2 /* ProfileView.swift in Sources */,
 				0F769063275D3B95006836F2 /* MockUserService.swift in Sources */,
@@ -482,6 +497,7 @@
 				0F769051275CCF41006836F2 /* HomeViewViewModel.swift in Sources */,
 				0F769065275D3D52006836F2 /* SignupView.swift in Sources */,
 				0FACF7A6274122B000B55423 /* SliceApp.swift in Sources */,
+				0F8AB0292838128D00744315 /* User+Service.swift in Sources */,
 				0F8AB02028380CC100744315 /* Payments+Endpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

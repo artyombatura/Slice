@@ -13,8 +13,12 @@ struct LoginView: View {
     
     @State private var login: String = ""
     @State private var password: String = ""
+	@State private var isErrorPresented: Bool = false
     
-    let userService: UserServiceProtocol = MockUserService()
+	// old
+//    let userService: UserServiceProtocol = MockUserService()
+	// new
+	let userService: UserServiceAPI = Service.UserService.shared
     
     var body: some View {
         VStack(content: {
@@ -50,14 +54,18 @@ struct LoginView: View {
             
             Button(action: {
                 if !login.isEmpty && !password.isEmpty {
-                    
-                    userService.login(login: login,
-                                      password: password,
-                                      completion: { user in
-                        appViewModel.user = user
-                        
-                        appViewModel.isUserLoggedIn.toggle()
-                    })
+					userService.login(username: login,
+									  password: password) { result in
+						switch result {
+						case let .success(model):
+							DispatchQueue.main.async {
+								self.appViewModel.loggedUser = model.user
+								self.appViewModel.isUserLoggedIn.toggle()
+							}
+						default:
+							isErrorPresented.toggle()
+						}
+					}
                 }
             }, label: {
                 RoundedRectangle(cornerRadius: 100)
@@ -79,5 +87,8 @@ struct LoginView: View {
             
             Spacer()
         })
+			.alert("Ошибка авторизации. Попробуйте снова.",
+				   isPresented: $isErrorPresented,
+				   actions: { EmptyView() })
     }
 }

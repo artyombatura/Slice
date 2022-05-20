@@ -60,6 +60,8 @@ struct ProfileView: View {
     @EnvironmentObject var appViewModel: AppViewModel
     
     @ObservedObject var viewModel: ProfileViewModel
+	
+	private let userService: UserServiceAPI = Service.UserService.shared
     
     init(newOrderSubject: PassthroughSubject<Order, Never>) {
 //        _viewModel = StateObject(wrappedValue: ProfileViewModel(newOrderSubject: newOrderSubject))
@@ -72,7 +74,7 @@ struct ProfileView: View {
                 SLProfileHeaderView(imageURL: appViewModel.user?.avatarURL,
                                     title: "")
                 
-                Text("\(appViewModel.user?.name ?? "") \(appViewModel.user?.surname ?? "")")
+                Text("\(appViewModel.loggedUser?.firstName ?? "") \(appViewModel.loggedUser?.lastName ?? "")")
                     .font(.system(size: 30,
                                   weight: .bold,
                                   design: .rounded))
@@ -80,6 +82,7 @@ struct ProfileView: View {
                 
                 Button(action: {
                     appViewModel.isUserLoggedIn = false
+					userService.logout()
                 }, label: {
                     Text("Выйти из аккаунта")
                         .font(.system(size: 20,
@@ -130,7 +133,7 @@ struct ProfileView: View {
                 Divider()
             })
         })
-        .navigationTitle("@\(appViewModel.user?.username ?? "")")
+        .navigationTitle("@\(appViewModel.loggedUser?.username ?? "")")
     }
 }
 

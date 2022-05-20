@@ -16,7 +16,7 @@ struct SLProfileHeaderView: View {
     var body: some View {
         HStack(content: {
             VStack(content: {
-                AsyncImage(url: URL(string: imageURL ?? ""), placeholder: { Circle().foregroundColor(.gray) })
+                AsyncImage(url: URL(string: imageURL ?? "https://i1.sndcdn.com/avatars-000280916352-bystub-t500x500.jpg"), placeholder: { Circle().foregroundColor(.gray) })
                     .frame(width: 150, height: 150)
                     .clipShape(Circle())
                     .shadow(color: .black, radius: 20, x: 0, y: 0)

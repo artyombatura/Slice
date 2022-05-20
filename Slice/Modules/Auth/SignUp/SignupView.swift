@@ -16,11 +16,18 @@ struct SignupView: View {
     @State private var lastName: String = ""
     @State private var email: String = ""
     @State private var password: String = ""
+	@State private var isErrorPresented: Bool = false
+	@State private var errorText: String = ""
     
-    let userService: UserServiceProtocol = MockUserService()
+	// old
+//    let userService: UserServiceProtocol = MockUserService()
+	// new
+	let userService: UserServiceAPI = Service.UserService.shared
+
     
     var body: some View {
-        VStack(content: {
+		ScrollView {
+        	VStack(content: {
             
             Text("SLICE")
                 .font(.system(size: 30,
@@ -81,17 +88,29 @@ struct SignupView: View {
                     !firstName.isEmpty &&
                     !lastName.isEmpty &&
                     !email.isEmpty {
-                    userService.signup(login: login,
-                                       password: password,
-                                       firstName: firstName,
-                                       lastName: lastName,
-                                       email: email,
-                                       completion: { user in
-                        appViewModel.user = user
-                        
-                        appViewModel.isUserLoggedIn.toggle()
-                    })
-                }
+					userService.signup(username: login,
+									   firstName: firstName,
+									   lastName: lastName,
+									   email: email,
+									   password: password) { _ in
+						self.userService.login(username: login,
+											   password: password) { result in
+							switch result {
+							case let .success(model):
+								DispatchQueue.main.async {
+									self.appViewModel.loggedUser = model.user
+									self.appViewModel.isUserLoggedIn.toggle()
+								}
+							default:
+								self.errorText = "Ошибка регистрации. Попробуйте снова."
+								self.isErrorPresented.toggle()
+							}
+						}
+					}
+				} else {
+					errorText = "Пожалуйста введите все данные и попробуйте снова."
+					isErrorPresented.toggle()
+				}
             }, label: {
                 RoundedRectangle(cornerRadius: 100)
                     .shadow(radius: 10)
@@ -106,5 +125,9 @@ struct SignupView: View {
             
             Spacer()
         })
+		}
+			.alert(errorText,
+				   isPresented: $isErrorPresented,
+				   actions: { EmptyView() })
     }
 }
