@@ -24,6 +24,21 @@ extension Endpoint {
 		
 		// MARK: - Popular restaurants
 		
+		static func popularRestaurants() -> Endpoint {
+			return Endpoint(method: .GET,
+							path: "/api/get-popular-restaurants/")
+		}
+		
 		// MARK: - Last visited restaurants
+		
+		static func lastVisitedRestaurants(using token: String?) -> Endpoint {
+			var authHeader: Endpoint.AuthHeaderField? = nil
+			if let token = token {
+				authHeader = ("Authorization", "Token \(token)")
+			}
+			return Endpoint(method: .GET,
+							path: "/api/get-last-visited-restaurants/",
+							authHeader: authHeader)
+		}
 	}
 }

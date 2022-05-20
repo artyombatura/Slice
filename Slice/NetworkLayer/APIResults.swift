@@ -72,8 +72,8 @@ extension APIResults {
 		let price: String
 		let estimatedTime: Int
 		let photoURL: String?
-		let dishType: String
-		let country: CountryAPI
+		let dishType: String?
+		let country: CountryAPI?
 		
 		enum CodingKeys: String, CodingKey {
 			case id, name, description, weight, price, country
@@ -102,5 +102,33 @@ extension APIResults {
 		let status: String
 		let restaurant: RestaurantAPI
 		let dishes: [DishAPI]
+		
+		var statusCasted: OrderStatus? {
+			return OrderStatus(rawValue: status)
+		}
+	}
+	
+	enum OrderStatus: String {
+		case active = "Active"
+		case delayed = "Delayed"
+		case cancelled = "Cancelled"
+		case done = "Done"
+	}
+}
+
+// MARK: - Payments
+
+extension APIResults {
+	struct CardAPI: Codable {
+		let id: Int
+		let number: String
+		let expirationDate: String
+		let cvc: String
+		
+		enum CodingKeys: String, CodingKey {
+			case id, number
+			case expirationDate = "expiration_date"
+			case cvc = "cvv"
+		}
 	}
 }

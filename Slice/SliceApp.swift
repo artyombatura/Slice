@@ -69,6 +69,47 @@ struct SliceApp: App {
 //																		date: "2022-05-20T15:40:40",
 //																		token: "5d6d90c3dd846b87aebd7c0177c5b9e71cf942c7"
 //																	   ).endpoint)
+							
+							// MARK: - Update order
+//							TestNetworkExecutor.executeWithDecoding(for: APIResults.OrderAPI.self,
+//																	   TestEndpoints.updateOrder(
+//																		orderID: 17,
+//																		status: .delayed,
+//																		token: "5d6d90c3dd846b87aebd7c0177c5b9e71cf942c7").endpoint)
+							
+							// MARK: - Delete order
+//							TestNetworkExecutor.execute(Endpoint.Orders.deleteOrderEndpoint(orderID: 16,
+//																							using: "5d6d90c3dd846b87aebd7c0177c5b9e71cf942c7"),
+//														completion: { })
+							
+							// MARK: - Get orders history
+							
+//							TestNetworkExecutor.executeWithDecoding(for: [APIResults.OrderAPI].self,
+//																	   Endpoint.Orders.getHistoryEndpoint(using: "5d6d90c3dd846b87aebd7c0177c5b9e71cf942c7"))
+							
+							// MARK: - Last visited rests
+							
+//							TestNetworkExecutor.executeWithDecoding(for: [APIResults.RestaurantAPI].self,
+//																	   TestEndpoints.lastVisitedRestaurants(token: "5d6d90c3dd846b87aebd7c0177c5b9e71cf942c7").endpoint)
+							
+							// MARK: - Popular rests
+							
+//							TestNetworkExecutor.executeWithDecoding(for: [APIResults.RestaurantAPI].self,
+//																	   Endpoint.ListRestaurants.popularRestaurants())
+							
+							// MARK: - Add payment method
+							
+//							TestNetworkExecutor.execute(TestEndpoints.addPaymentMethod(
+//								cardNumber: "1234567812345678",
+//								expirationDate: "1226",
+//								cvc: "111",
+//								token: "5d6d90c3dd846b87aebd7c0177c5b9e71cf942c7"
+//							).endpoint, completion: { })
+							
+							// MARK: - Get all payment methods
+							
+//							TestNetworkExecutor.executeWithDecoding(for: [APIResults.CardAPI].self,
+//																	   Endpoint.Payments.getAllPaymentMethods(using: "5d6d90c3dd846b87aebd7c0177c5b9e71cf942c7"))
 						}
                 })
                     .environmentObject(appViewModel)

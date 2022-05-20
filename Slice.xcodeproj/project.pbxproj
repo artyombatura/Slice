@@ -37,6 +37,7 @@
 		0F8AB01A2836524400744315 /* APIResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB0192836524400744315 /* APIResults.swift */; };
 		0F8AB01C2836554600744315 /* ListRestaurants+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB01B2836554600744315 /* ListRestaurants+Endpoint.swift */; };
 		0F8AB01E28365D1B00744315 /* Orders+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB01D28365D1B00744315 /* Orders+Endpoint.swift */; };
+		0F8AB02028380CC100744315 /* Payments+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB01F28380CC100744315 /* Payments+Endpoint.swift */; };
 		0FACF7A6274122B000B55423 /* SliceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF7A5274122B000B55423 /* SliceApp.swift */; };
 		0FACF7A8274122B000B55423 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF7A7274122B000B55423 /* ContentView.swift */; };
 		0FACF7AA274122B200B55423 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FACF7A9274122B200B55423 /* Assets.xcassets */; };
@@ -79,6 +80,7 @@
 		0F8AB0192836524400744315 /* APIResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResults.swift; sourceTree = "<group>"; };
 		0F8AB01B2836554600744315 /* ListRestaurants+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListRestaurants+Endpoint.swift"; sourceTree = "<group>"; };
 		0F8AB01D28365D1B00744315 /* Orders+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Orders+Endpoint.swift"; sourceTree = "<group>"; };
+		0F8AB01F28380CC100744315 /* Payments+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Payments+Endpoint.swift"; sourceTree = "<group>"; };
 		0FACF7A2274122B000B55423 /* Slice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FACF7A5274122B000B55423 /* SliceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliceApp.swift; sourceTree = "<group>"; };
 		0FACF7A7274122B000B55423 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -192,7 +194,6 @@
 		0F76905F275D3B81006836F2 /* UserService */ = {
 			isa = PBXGroup;
 			children = (
-				0F8AB010282D809300744315 /* Endpoints */,
 				0F769060275D3B8D006836F2 /* UserService.swift */,
 				0F769062275D3B95006836F2 /* MockUserService.swift */,
 			);
@@ -232,13 +233,6 @@
 			path = NetworkLayer;
 			sourceTree = "<group>";
 		};
-		0F8AB010282D809300744315 /* Endpoints */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Endpoints;
-			sourceTree = "<group>";
-		};
 		0F8AB01328364FB700744315 /* TestExecutor */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,6 +248,7 @@
 				0F8AB0172836506200744315 /* Login+Endpoint.swift */,
 				0F8AB01B2836554600744315 /* ListRestaurants+Endpoint.swift */,
 				0F8AB01D28365D1B00744315 /* Orders+Endpoint.swift */,
+				0F8AB01F28380CC100744315 /* Payments+Endpoint.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -279,8 +274,6 @@
 			children = (
 				0F8AB008282D7C2700744315 /* NetworkLayer */,
 				0F76905E275D3B77006836F2 /* Services */,
-				0FE9DFAD274ACFF200AE15B5 /* App */,
-				0FE9DF9D274A5F1500AE15B5 /* Models */,
 				0FACF7B4274122D600B55423 /* SLKit */,
 				0FACF7B3274122CE00B55423 /* Modules */,
 				0FACF7A5274122B000B55423 /* SliceApp.swift */,
@@ -361,26 +354,12 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
-		0FE9DF9D274A5F1500AE15B5 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		0FE9DFAA274A606000AE15B5 /* ViewModifiers */ = {
 			isa = PBXGroup;
 			children = (
 				0FE9DFAB274A607200AE15B5 /* SLUnderTitledViewModifier.swift */,
 			);
 			path = ViewModifiers;
-			sourceTree = "<group>";
-		};
-		0FE9DFAD274ACFF200AE15B5 /* App */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = App;
 			sourceTree = "<group>";
 		};
 		0FE9DFB1274AD08800AE15B5 /* Extensions */ = {
@@ -503,6 +482,7 @@
 				0F769051275CCF41006836F2 /* HomeViewViewModel.swift in Sources */,
 				0F769065275D3D52006836F2 /* SignupView.swift in Sources */,
 				0FACF7A6274122B000B55423 /* SliceApp.swift in Sources */,
+				0F8AB02028380CC100744315 /* Payments+Endpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

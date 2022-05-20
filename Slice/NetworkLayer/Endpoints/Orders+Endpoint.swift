@@ -30,5 +30,41 @@ extension Endpoint {
 							body: body,
 							authHeader: authHeader)
 		}
+		
+		static func updateOrderEndpoint(orderID: Int,
+										with status: APIResults.OrderStatus,
+										using token: String?) -> Endpoint {
+			var authHeader: Endpoint.AuthHeaderField? = nil
+			if let token = token {
+				authHeader = ("Authorization", "Token \(token)")
+			}
+			return Endpoint(method: .PUT,
+							path: "/api/update-order/\(orderID)/",
+							body: [
+								"status": status.rawValue
+							],
+							authHeader: authHeader)
+		}
+		
+		static func deleteOrderEndpoint(orderID: Int,
+										using token: String?) -> Endpoint {
+			var authHeader: Endpoint.AuthHeaderField? = nil
+			if let token = token {
+				authHeader = ("Authorization", "Token \(token)")
+			}
+			return Endpoint(method: .DELETE,
+							path: "/api/delete-order/\(orderID)/",
+							authHeader: authHeader)
+		}
+		
+		static func getHistoryEndpoint(using token: String?) -> Endpoint {
+			var authHeader: Endpoint.AuthHeaderField? = nil
+			if let token = token {
+				authHeader = ("Authorization", "Token \(token)")
+			}
+			return Endpoint(method: .GET,
+							path: "/api/get-orders-history/",
+							authHeader: authHeader)
+		}
 	}
 }

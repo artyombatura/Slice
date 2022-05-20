@@ -12,12 +12,27 @@ enum TestEndpoints {
 	case login(username: String, password: String)
 	
 	case allRestaurants
+	case lastVisitedRestaurants(token: String)
+	
 	case restaurantMenu(id: Int)
 	
 	case createOrder(restaurantID: Int,
 					 dishesIDs: [Int],
 					 date: String? = nil,
 					 token: String?)
+	
+	case updateOrder(orderID: Int,
+					 status: APIResults.OrderStatus,
+					 token: String?)
+	
+	case getOrdersHistory(token: String?)
+	
+	case addPaymentMethod(
+		cardNumber: String,
+		expirationDate: String,
+		cvc: String,
+		token: String?
+		)
 }
 
 extension TestEndpoints {
@@ -47,6 +62,10 @@ extension TestEndpoints {
 		case .allRestaurants:
 			return Endpoint.ListRestaurants.allRestaurantsEndpoint()
 			
+		// MARK: - Last visited rests
+		case let .lastVisitedRestaurants(token):
+			return Endpoint.ListRestaurants.lastVisitedRestaurants(using: token)
+			
 		// MARK: - Rest menu
 			
 		case let .restaurantMenu(id):
@@ -55,6 +74,19 @@ extension TestEndpoints {
 		// MARK: - Create order
 		case let .createOrder(restaurantID, dishesIDs, date, token):
 			return Endpoint.Orders.createOrderEndpoint(restaurantID: restaurantID, dishesIDs: dishesIDs, date: date, using: token)
+			
+		// MARK: - Update order
+		case let .updateOrder(orderID, status, token):
+			return Endpoint.Orders.updateOrderEndpoint(orderID: orderID, with: status, using: token)
+		
+		// MARK: - Get orders history
+		case let .getOrdersHistory(token):
+			return Endpoint.Orders.getHistoryEndpoint(using: token)
+			
+		// MARK: - Add payment
+			
+		case let .addPaymentMethod(cardNumber, expirationDate, cvc, token):
+			return Endpoint.Payments.addPaymentMethod(cardNumber: cardNumber, expirationDate: expirationDate, cvc: cvc, using: token)
 		}
 	}
 }
