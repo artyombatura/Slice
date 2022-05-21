@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CartView: View {
     @Binding var cart: Cart
+	var isEditable: Bool = true
         
     var body: some View {
         List(content: {
@@ -34,9 +35,12 @@ struct CartView: View {
                                       design: .rounded))
                 })
             })
-                .onDelete { index in
-                    delete(at: index)
-                }
+				.if(isEditable) { view in
+					view
+						.onDelete { index in
+							delete(at: index)
+						}
+				}
         })
 			.navigationTitle("Заказ: \(cart.totalSum.stringWithNDecimalPlaces(2)) руб.")
     }
@@ -44,4 +48,15 @@ struct CartView: View {
     func delete(at offsets: IndexSet) {
         cart.allDishes.remove(atOffsets: offsets)
     }
+}
+
+
+extension View {
+	@ViewBuilder func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
+		if condition {
+			transform(self)
+		} else {
+			self
+		}
+	}
 }

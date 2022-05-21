@@ -59,11 +59,7 @@ class HomeViewViewModel: ObservableObject {
 }
 
 struct HomeView: View {
-	enum RestsSections: String {
-		case all = "Все заведения"
-		case lastVisited = "Последние посещенные"
-		case popular = "Популярные"
-	}
+	typealias RestsSections = ViewContext.RestsSections
 	
     @EnvironmentObject var appViewModel: AppViewModel
     
@@ -79,9 +75,11 @@ struct HomeView: View {
                                             title: "")
                     })
                     
-                    Divider()
+					if viewModel.lastVisitedRests.isNotEmpty {
+                    	Divider()
 
-					SecondaryRestaurantsView(restaurants: viewModel.lastVisitedRests, title: RestsSections.lastVisited.rawValue)
+						SecondaryRestaurantsView(restaurants: viewModel.lastVisitedRests, title: RestsSections.lastVisited.rawValue)
+					}
                     
                     Divider()
 					
@@ -101,4 +99,18 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
     }
+}
+
+extension Collection {
+	var isNotEmpty: Bool {
+		!isEmpty
+	}
+}
+
+enum ViewContext {
+	enum RestsSections: String {
+		case all = "Все заведения"
+		case lastVisited = "Последние посещенные"
+		case popular = "Популярные"
+	}
 }

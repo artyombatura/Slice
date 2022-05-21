@@ -18,9 +18,9 @@ class AppViewModel: ObservableObject {
 	@Published var loggedUser: APIResults.UserAPI?
 	//
 	
-    @Published var currentOrder: Order?
+//    @Published var currentOrder: Order?
     
-    var newOrderSubject = PassthroughSubject<Order, Never>()
+	var newOrderSubject = PassthroughSubject<APIResults.OrderAPI, Never>()
 }
 
 @main

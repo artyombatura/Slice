@@ -41,6 +41,7 @@
 		0F8AB0292838128D00744315 /* User+Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB0282838128D00744315 /* User+Service.swift */; };
 		0F8AB02B2838237900744315 /* Restaurant+Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB02A2838237900744315 /* Restaurant+Service.swift */; };
 		0F8AB02D28382AA100744315 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB02C28382AA100744315 /* Double+Extension.swift */; };
+		0F8AB02F28395AB200744315 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB02E28395AB200744315 /* Date+Extension.swift */; };
 		0FACF7A6274122B000B55423 /* SliceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF7A5274122B000B55423 /* SliceApp.swift */; };
 		0FACF7A8274122B000B55423 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF7A7274122B000B55423 /* ContentView.swift */; };
 		0FACF7AA274122B200B55423 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FACF7A9274122B200B55423 /* Assets.xcassets */; };
@@ -87,6 +88,7 @@
 		0F8AB0282838128D00744315 /* User+Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Service.swift"; sourceTree = "<group>"; };
 		0F8AB02A2838237900744315 /* Restaurant+Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Restaurant+Service.swift"; sourceTree = "<group>"; };
 		0F8AB02C28382AA100744315 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
+		0F8AB02E28395AB200744315 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		0FACF7A2274122B000B55423 /* Slice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FACF7A5274122B000B55423 /* SliceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliceApp.swift; sourceTree = "<group>"; };
 		0FACF7A7274122B000B55423 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				0F8AB02C28382AA100744315 /* Double+Extension.swift */,
+				0F8AB02E28395AB200744315 /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				0F8AB00E282D7EA700744315 /* Endpoint.swift in Sources */,
 				0F662C7D2759891500C71A41 /* User.swift in Sources */,
 				0FACF7BF2741262600B55423 /* SLProfileHeaderView.swift in Sources */,
+				0F8AB02F28395AB200744315 /* Date+Extension.swift in Sources */,
 				0F662C8127598DA100C71A41 /* RestaurantView.swift in Sources */,
 				0F769059275CF636006836F2 /* CartView.swift in Sources */,
 				0FACF7BA2741230F00B55423 /* HomeView.swift in Sources */,

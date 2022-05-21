@@ -107,20 +107,42 @@ extension APIResults {
 	struct OrderAPI: Codable {
 		let id: Int
 		let date: String?
-		let status: String
+		var status: String
 		let restaurant: RestaurantAPI
 		let dishes: [DishAPI]
 		
 		var statusCasted: OrderStatus? {
 			return OrderStatus(rawValue: status)
 		}
+		
+		var totalSum: Double {
+			return dishes.map { Double($0.price) ?? 0.0 }.reduce(0) { $0 + $1 }
+		}
+		
+//		var isCouldBeCancelled
 	}
 	
 	enum OrderStatus: String {
 		case active = "Active"
+		
+		/// Может быть отменен не позднее чем за 2 часа до начала выполнения заказа
 		case delayed = "Delayed"
+		
 		case cancelled = "Cancelled"
 		case done = "Done"
+		
+		var plain: String {
+			switch self {
+			case .active:
+				return "Активен"
+			case .delayed:
+				return "На время"
+			case .cancelled:
+				return "Отменен"
+			case .done:
+				return "Выполнен"
+			}
+		}
 	}
 }
 

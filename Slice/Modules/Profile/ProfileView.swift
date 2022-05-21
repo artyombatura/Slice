@@ -10,21 +10,19 @@ import SwiftUI
 import Combine
 
 class ProfileViewModel: ObservableObject {
-    var restaurantsService: RestaurantsServiceProtocol = MockRestaurantsService()
+	let restaurantsService: RestaurantServiceAPI = Service.Restaurant.shared
     
-    var ordersService: OrdersServiceProtocol = MockOrdersService()
+    var newOrderSubject: PassthroughSubject<APIResults.OrderAPI, Never>
     
-    var newOrderSubject: PassthroughSubject<Order, Never>
+    @Published var orders = [APIResults.OrderAPI]()
     
-    @Published var orders = [Order]()
+	@Published var latestRestaurants = [APIResults.RestaurantAPI]()
     
-    @Published var latestRestaurants = [Restaurant]()
-    
-    @Published var totalSumSpent: Int = 0
+	@Published var totalSumSpent: Double = 0.0
     
     var cancellableStore = Set<AnyCancellable>()
     
-    init(newOrderSubject: PassthroughSubject<Order, Never>) {
+    init(newOrderSubject: PassthroughSubject<APIResults.OrderAPI, Never>) {
         self.newOrderSubject = newOrderSubject
         
         newOrderSubject
@@ -33,22 +31,23 @@ class ProfileViewModel: ObservableObject {
                 self.orders.insert(newOrder, at: 0)
             }
             .store(in: &cancellableStore)
-        
-        restaurantsService.getLastRestaurants { rests in
-            self.latestRestaurants = rests
-        }
-        
-        ordersService.getLastOrders(user: "") { orders in
-            let sorted = orders.sorted {
-                $0.timestamp > $1.timestamp
-            }
-            self.orders = sorted
-        }
-        
+		
+		restaurantsService.fetchLastVisitedRests { result in
+			if case let .success(lastVisitedRests) = result {
+				self.latestRestaurants = lastVisitedRests
+			}
+		}
+		
+		restaurantsService.ordersHistory { result in
+			if case let .success(orders) = result {
+				self.orders = orders
+			}
+		}
+
         $orders
             .receive(on: DispatchQueue.main)
             .sink { orders in
-                var totalSum = 0
+				var totalSum: Double = 0.0
                 orders.forEach({ totalSum += $0.totalSum })
                 self.totalSumSpent = totalSum
             }
@@ -63,8 +62,7 @@ struct ProfileView: View {
 	
 	private let userService: UserServiceAPI = Service.UserService.shared
     
-    init(newOrderSubject: PassthroughSubject<Order, Never>) {
-//        _viewModel = StateObject(wrappedValue: ProfileViewModel(newOrderSubject: newOrderSubject))
+	init(newOrderSubject: PassthroughSubject<APIResults.OrderAPI, Never>) {
         viewModel = ProfileViewModel(newOrderSubject: newOrderSubject)
     }
     
@@ -94,12 +92,12 @@ struct ProfileView: View {
                 Divider()
                 
 				// MARK: - TODO LAST VISITED RESTS
-//                LatestRestaurantsView(restaurants: viewModel.latestRestaurants)
+				SecondaryRestaurantsView(restaurants: viewModel.latestRestaurants, title: ViewContext.RestsSections.lastVisited.rawValue)
                 
                 Divider()
                 
                 HStack(content: {
-                    Text("Всего потрачено: \(viewModel.totalSumSpent) руб.")
+					Text("Всего потрачено: \(viewModel.totalSumSpent.stringWithNDecimalPlaces(2)) руб.")
                         .font(.system(size: 18,
                                       weight: .bold,
                                       design: .rounded))
@@ -124,7 +122,13 @@ struct ProfileView: View {
                     })
 
                     ForEach(viewModel.orders, id: \.id, content: { order in
-                        OrderRow(order: order)
+						NavigationLink(destination: {
+							CartView(cart: .constant(Cart(allDishes: order.dishes)), isEditable: false)
+						},
+									   label: {
+							OrderRow(order: order)
+						})
+							.buttonStyle(PlainButtonStyle())
                     })
                         .padding(.top, 10)
                 })
@@ -139,25 +143,37 @@ struct ProfileView: View {
 }
 
 struct OrderRow: View {
-    @State var order: Order
+    @State var order: APIResults.OrderAPI
+	
+	var statusColor: Color {
+		switch order.statusCasted {
+		case .active, .done:
+			return .green
+		case .delayed:
+			return .yellow
+		case .cancelled:
+			return .red
+		default:
+			return .white
+		}
+	}
     
     var body: some View {
         HStack(content: {
             VStack(alignment: .leading, content: {
                 HStack(content: {
-                    Text(order.restaurantName)
-                    
-                    if order.isActive {
-                        Text("Активен")
-                            .foregroundColor(.green)
-                    }
+					Text(order.restaurant.name)
+					
+					Text(order.statusCasted?.plain ?? "")
+						.foregroundColor(statusColor)
                 })
                 
                 Text(dateText())
                 
-                if order.isActive {
+				// MARK: - TODO CANCEL ORDERS
+				if order.statusCasted == .delayed {
                     Button(action: {
-                        order.isActive = false
+						order.status = APIResults.OrderStatus.cancelled.rawValue
                     }, label: {
                         Text("Отменить заказ")
                         
@@ -170,15 +186,22 @@ struct OrderRow: View {
             
             Spacer()
             
-            Text("\(order.totalSum) руб.")
+			Text("\(order.totalSum.stringWithNDecimalPlaces(2)) руб.")
+			
+			Image(systemName: "chevron.right")
         })
     }
     
     func dateText() -> String {
+		guard let date = APIDatesFormatter.shared.stringToDate(order.date ?? "") else {
+			print("\n\n$0: Failed date with status: \(order.status); id: \(order.id); rest: \(order.restaurant.name)\t\tDate: \(order.date)\n\n")
+			
+			return ""
+		}
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .short
-        
-        return dateFormatter.string(from: order.date)
+
+        return dateFormatter.string(from: date)
     }
 }

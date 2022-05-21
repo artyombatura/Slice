@@ -15,6 +15,13 @@ protocol RestaurantServiceAPI {
 	func fetchLastVisitedRests(completion: @escaping (Result<[APIResults.RestaurantAPI], Service.ServiceError>) -> Void)
 	
 	func fetchMenu(for id: Int, completion: @escaping (Result<[APIResults.DishAPI], Service.ServiceError>) -> Void)
+	
+	func createOrder(restaurantID: Int,
+					 dishesIDs: [Int],
+					 date: String?,
+					 completion: @escaping (Result<APIResults.OrderAPI, Service.ServiceError>) -> Void)
+	
+	func ordersHistory(completion: @escaping (Result<[APIResults.OrderAPI], Service.ServiceError>) -> Void)
 }
 
 extension Service {
@@ -56,6 +63,34 @@ extension Service {
 		
 		// MARK: - Create order
 		
+		func createOrder(restaurantID: Int,
+						 dishesIDs: [Int],
+						 date: String? = nil,
+						 completion: @escaping (Result<APIResults.OrderAPI, Service.ServiceError>) -> Void) {
+			guard let token = LocalUserService.shared.getToken() else {
+				completion(.failure(.authTokenNotFound))
+				return
+			}
+			let endpoint = Endpoint.Orders.createOrderEndpoint(restaurantID: restaurantID,
+															   dishesIDs: dishesIDs,
+															   date: date,
+															   using: token)
+			NetworkCaller.shared.call(for: endpoint,
+										 resultType: APIResults.OrderAPI.self,
+										 completion: completion)
+		}
+		
+		func ordersHistory(completion: @escaping (Result<[APIResults.OrderAPI], Service.ServiceError>) -> Void) {
+			guard let token = LocalUserService.shared.getToken() else {
+				completion(.failure(.authTokenNotFound))
+				return
+			}
+			let endpoint = Endpoint.Orders.getHistoryEndpoint(using: token)
+			NetworkCaller.shared.call(for: endpoint,
+										 resultType: [APIResults.OrderAPI].self,
+										 completion: completion)
+		}
+		
 		// MARK: - Fetch menu
 		
 		func fetchMenu(for id: Int, completion: @escaping (Result<[APIResults.DishAPI], Service.ServiceError>) -> Void) {
@@ -65,8 +100,4 @@ extension Service {
 										 completion: completion)
 		}
 	}
-}
-
-extension Service {
-
 }

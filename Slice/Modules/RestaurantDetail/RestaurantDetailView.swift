@@ -8,6 +8,28 @@
 import Foundation
 import SwiftUI
 
+final class OrderDatesActionsValidator {
+	// aka 15 minutes
+	let secondsOffsetToBeDelayed: Double = 900
+	let minutesOffsetToBeDelayed: Double = 15
+	
+	let secondsInMinute: Double = 60
+	
+	static let shared = OrderDatesActionsValidator()
+	
+	private init() { }
+	
+	func isCouldBeCreatedAsDelayed(selectedDate: Date) -> Bool {
+		let now = Date.now
+		return (selectedDate.timeIntervalSince1970 - now.timeIntervalSince1970) / secondsInMinute >= minutesOffsetToBeDelayed
+	}
+	
+	func isCouldBeCancelled(dateString: String) -> Bool {
+		let now = Date.now
+		return false
+	}
+}
+
 struct Cart {
 	var allDishes = [APIResults.DishAPI]()
     
@@ -19,17 +41,53 @@ struct Cart {
 }
 
 class RestaurantDetailViewModel: ObservableObject {
-    
-    @Published var selectedDate: Date = Date()
+	let restsService: RestaurantServiceAPI = Service.Restaurant.shared
+	
+	@Published var selectedDate: Date = .now
     
     @Published var isDelayedOrder: Bool = false
     
     @Published var cart = Cart()
+	
+	@Published var errorText: String = ""
+	@Published var isErrorDisplayed: Bool = false
+	
+	
+	let enterDate: Date
+	
+	init() {
+		self.enterDate = Date.now
+	}
     
+	func createOrder(restID: Int, completion: @escaping (APIResults.OrderAPI) -> Void) {
+		// Проверяет введенные даты на соблюдение условия:
+		// Если дата отложенного заказа больше текущий на 15 минут - заказ может быть отложенным
+		// Если заказ планируется быть выполненым за 15 минут
+		let isDelayedRequirementTrue = OrderDatesActionsValidator.shared.isCouldBeCreatedAsDelayed(selectedDate: selectedDate)
+		
+		if isDelayedOrder {
+			guard isDelayedRequirementTrue else {
+				self.errorText = "Отложенный заказ может быть создан только на время больше текущего на 15 минут. Пожалуйста проверьте заказ, убедитесь в правильности времени и попробуйте снова"
+				self.isErrorDisplayed.toggle()
+				return
+			}
+		}
+		
+		let dishesIDs: [Int] = cart.allDishes.map { $0.id }
+	
+		restsService.createOrder(restaurantID: restID,
+								 dishesIDs: dishesIDs,
+								 date: isDelayedOrder ? APIDatesFormatter.shared.dateToString(selectedDate) : nil) { result in
+			if case let .success(order) = result {
+				completion(order)
+			}
+		}
+	}
 }
 
 struct RestaurantDetailView: View {
     @EnvironmentObject var appViewModel: AppViewModel
+	@Environment(\.presentationMode) var presentationMode
     
     @StateObject var viewModel = RestaurantDetailViewModel()
     
@@ -40,11 +98,6 @@ struct RestaurantDetailView: View {
     @State private var isDatePickVisible: Bool = false
 	
 	@State private var menu: [APIResults.DishAPI] = []
-	
-	let restsService: RestaurantServiceAPI = Service.Restaurant.shared
-	
-	@State private var errorText: String = ""
-	@State private var isErrorDisplayed: Bool = false
     
     var body: some View {
         ZStack(content: {
@@ -75,7 +128,8 @@ struct RestaurantDetailView: View {
                     Divider()
                     
                     if isDatePickVisible {
-                        DatePicker("Выберите время:", selection: $viewModel.selectedDate, in: Date()...)
+						let offsetDate = Date(timeIntervalSinceNow: OrderDatesActionsValidator.shared.secondsOffsetToBeDelayed)
+                        DatePicker("Выберите время:", selection: $viewModel.selectedDate, in: offsetDate...)
                             .padding(.horizontal, 16)
                     }
                     
@@ -111,14 +165,13 @@ struct RestaurantDetailView: View {
                     )
                     .onTapGesture {
 						// MARK: - TODO
-//                        print("Заказ отложенный? - \(viewModel.isDelayedOrder)")
-//
-//                        let newOrder = Order(id: UUID().uuidString,
-//                                             isActive: true,
-//                                             restaurantName: restaurant.name,
-//                                             dishes: [])
-////
-//                        appViewModel.newOrderSubject.send(newOrder)
+						viewModel.createOrder(restID: restaurant.id) { order in
+							appViewModel.newOrderSubject.send(order)
+							DispatchQueue.main.async {
+								presentationMode.wrappedValue.dismiss()
+							}
+						}
+
                     }
                     .onLongPressGesture(perform: {
                         isDatePickVisible.toggle()
@@ -129,11 +182,11 @@ struct RestaurantDetailView: View {
             .padding(.horizontal, 16)
         })
         .navigationTitle(restaurant.name)
-		.alert(errorText,
-			   isPresented: $isErrorDisplayed,
+		.alert(viewModel.errorText,
+			   isPresented: $viewModel.isErrorDisplayed,
 			   actions: { EmptyView() })
 		.onAppear {
-			restsService.fetchMenu(for: restaurant.id) { result in
+			viewModel.restsService.fetchMenu(for: restaurant.id) { result in
 				switch result {
 				case let .success(menu):
 					DispatchQueue.main.async {
