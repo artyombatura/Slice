@@ -42,6 +42,8 @@
 		0F8AB02B2838237900744315 /* Restaurant+Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB02A2838237900744315 /* Restaurant+Service.swift */; };
 		0F8AB02D28382AA100744315 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB02C28382AA100744315 /* Double+Extension.swift */; };
 		0F8AB02F28395AB200744315 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB02E28395AB200744315 /* Date+Extension.swift */; };
+		0F8AB03228398C9400744315 /* OrderDatesActionsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB03128398C9400744315 /* OrderDatesActionsValidator.swift */; };
+		0F8AB035283991D200744315 /* PaymentMethodsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB034283991D200744315 /* PaymentMethodsView.swift */; };
 		0FACF7A6274122B000B55423 /* SliceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF7A5274122B000B55423 /* SliceApp.swift */; };
 		0FACF7A8274122B000B55423 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF7A7274122B000B55423 /* ContentView.swift */; };
 		0FACF7AA274122B200B55423 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FACF7A9274122B200B55423 /* Assets.xcassets */; };
@@ -89,6 +91,8 @@
 		0F8AB02A2838237900744315 /* Restaurant+Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Restaurant+Service.swift"; sourceTree = "<group>"; };
 		0F8AB02C28382AA100744315 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		0F8AB02E28395AB200744315 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		0F8AB03128398C9400744315 /* OrderDatesActionsValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDatesActionsValidator.swift; sourceTree = "<group>"; };
+		0F8AB034283991D200744315 /* PaymentMethodsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsView.swift; sourceTree = "<group>"; };
 		0FACF7A2274122B000B55423 /* Slice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FACF7A5274122B000B55423 /* SliceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliceApp.swift; sourceTree = "<group>"; };
 		0FACF7A7274122B000B55423 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -272,6 +276,22 @@
 			path = New;
 			sourceTree = "<group>";
 		};
+		0F8AB03028398C8D00744315 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0F8AB03128398C9400744315 /* OrderDatesActionsValidator.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		0F8AB033283991C600744315 /* Payments */ = {
+			isa = PBXGroup;
+			children = (
+				0F8AB034283991D200744315 /* PaymentMethodsView.swift */,
+			);
+			path = Payments;
+			sourceTree = "<group>";
+		};
 		0FACF799274122B000B55423 = {
 			isa = PBXGroup;
 			children = (
@@ -314,6 +334,7 @@
 		0FACF7B3274122CE00B55423 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				0F8AB033283991C600744315 /* Payments */,
 				0F662C7B2759890C00C71A41 /* Models */,
 				0F662C78275987C200C71A41 /* Profile */,
 				0F662C77275987B900C71A41 /* Cart */,
@@ -328,6 +349,7 @@
 		0FACF7B4274122D600B55423 /* SLKit */ = {
 			isa = PBXGroup;
 			children = (
+				0F8AB03028398C8D00744315 /* Helpers */,
 				0FE9DFB1274AD08800AE15B5 /* Extensions */,
 				0FACF7BB2741237000B55423 /* UI */,
 			);
@@ -469,6 +491,7 @@
 			files = (
 				0F8AB01E28365D1B00744315 /* Orders+Endpoint.swift in Sources */,
 				0F8AB00A282D7C4800744315 /* NetworkManager.swift in Sources */,
+				0F8AB03228398C9400744315 /* OrderDatesActionsValidator.swift in Sources */,
 				0F8AB00E282D7EA700744315 /* Endpoint.swift in Sources */,
 				0F662C7D2759891500C71A41 /* User.swift in Sources */,
 				0FACF7BF2741262600B55423 /* SLProfileHeaderView.swift in Sources */,
@@ -500,6 +523,7 @@
 				0F8AB02B2838237900744315 /* Restaurant+Service.swift in Sources */,
 				0F76906F275D4D2C006836F2 /* OrdersService.swift in Sources */,
 				0F76905D275D0EE3006836F2 /* ProfileView.swift in Sources */,
+				0F8AB035283991D200744315 /* PaymentMethodsView.swift in Sources */,
 				0F769063275D3B95006836F2 /* MockUserService.swift in Sources */,
 				0F8AB01A2836524400744315 /* APIResults.swift in Sources */,
 				0F769051275CCF41006836F2 /* HomeViewViewModel.swift in Sources */,

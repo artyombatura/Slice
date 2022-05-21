@@ -22,6 +22,10 @@ protocol RestaurantServiceAPI {
 					 completion: @escaping (Result<APIResults.OrderAPI, Service.ServiceError>) -> Void)
 	
 	func ordersHistory(completion: @escaping (Result<[APIResults.OrderAPI], Service.ServiceError>) -> Void)
+	
+	func updateOrder(_ id: Int,
+					 updateWith status: APIResults.OrderStatus,
+					 completion: @escaping (Result<APIResults.OrderAPI, Service.ServiceError>) -> Void)
 }
 
 extension Service {
@@ -74,6 +78,23 @@ extension Service {
 			let endpoint = Endpoint.Orders.createOrderEndpoint(restaurantID: restaurantID,
 															   dishesIDs: dishesIDs,
 															   date: date,
+															   using: token)
+			NetworkCaller.shared.call(for: endpoint,
+										 resultType: APIResults.OrderAPI.self,
+										 completion: completion)
+		}
+		
+		// MARK: - Update order
+		
+		func updateOrder(_ id: Int,
+						 updateWith status: APIResults.OrderStatus,
+						 completion: @escaping (Result<APIResults.OrderAPI, ServiceError>) -> Void) {
+			guard let token = LocalUserService.shared.getToken() else {
+				completion(.failure(.authTokenNotFound))
+				return
+			}
+			let endpoint = Endpoint.Orders.updateOrderEndpoint(orderID: id,
+															   with: status,
 															   using: token)
 			NetworkCaller.shared.call(for: endpoint,
 										 resultType: APIResults.OrderAPI.self,

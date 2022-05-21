@@ -48,7 +48,11 @@ class ProfileViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { orders in
 				var totalSum: Double = 0.0
-                orders.forEach({ totalSum += $0.totalSum })
+                orders.forEach({
+					if $0.statusCasted != .cancelled {
+						totalSum += $0.totalSum
+					}
+				})
                 self.totalSumSpent = totalSum
             }
             .store(in: &cancellableStore)
@@ -126,7 +130,18 @@ struct ProfileView: View {
 							CartView(cart: .constant(Cart(allDishes: order.dishes)), isEditable: false)
 						},
 									   label: {
-							OrderRow(order: order)
+							OrderRow(order: order, cancelAction: {
+								viewModel.restaurantsService.updateOrder(order.id,
+																		 updateWith: .cancelled) { result in
+									if case let .success(updatedOrder) = result {
+										DispatchQueue.main.async {
+											guard let index = viewModel.orders.firstIndex(where: { $0.id == updatedOrder.id }) else { return }
+											viewModel.orders.remove(at: index)
+											viewModel.orders.insert(updatedOrder, at: index)
+										}
+									}
+								}
+							})
 						})
 							.buttonStyle(PlainButtonStyle())
                     })
@@ -137,13 +152,20 @@ struct ProfileView: View {
                 
                 Divider()
             })
-        })
+		})
+			.toolbar(content: {
+				NavigationLink(destination: { PaymentMethodsView() }, label: {
+					Image(systemName: "creditcard")
+				})
+			})
         .navigationTitle("@\(appViewModel.loggedUser?.username ?? "")")
     }
 }
 
 struct OrderRow: View {
     @State var order: APIResults.OrderAPI
+	
+	var cancelAction: () -> Void
 	
 	var statusColor: Color {
 		switch order.statusCasted {
@@ -171,9 +193,14 @@ struct OrderRow: View {
                 Text(dateText())
                 
 				// MARK: - TODO CANCEL ORDERS
-				if order.statusCasted == .delayed {
+				if order.statusCasted == .delayed,
+				   let delayedDate = order.date,
+				   OrderDatesActionsValidator.shared.isCouldBeCancelled(
+					dateString: delayedDate
+				   ) {
                     Button(action: {
 						order.status = APIResults.OrderStatus.cancelled.rawValue
+						cancelAction()
                     }, label: {
                         Text("Отменить заказ")
                         

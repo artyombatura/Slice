@@ -8,28 +8,6 @@
 import Foundation
 import SwiftUI
 
-final class OrderDatesActionsValidator {
-	// aka 15 minutes
-	let secondsOffsetToBeDelayed: Double = 900
-	let minutesOffsetToBeDelayed: Double = 15
-	
-	let secondsInMinute: Double = 60
-	
-	static let shared = OrderDatesActionsValidator()
-	
-	private init() { }
-	
-	func isCouldBeCreatedAsDelayed(selectedDate: Date) -> Bool {
-		let now = Date.now
-		return (selectedDate.timeIntervalSince1970 - now.timeIntervalSince1970) / secondsInMinute >= minutesOffsetToBeDelayed
-	}
-	
-	func isCouldBeCancelled(dateString: String) -> Bool {
-		let now = Date.now
-		return false
-	}
-}
-
 struct Cart {
 	var allDishes = [APIResults.DishAPI]()
     
