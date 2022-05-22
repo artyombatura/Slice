@@ -15,7 +15,7 @@ class NetworkCaller {
 	
 	private init() { }
 	
-	public func simpleCall(for endpoint: Endpoint, completion: @escaping (Result<Void, Error>) -> Void) {
+	public func simpleCall(for endpoint: Endpoint, completion: @escaping (Result<Void, Service.ServiceError>) -> Void) {
 		var request = URLRequest(url: endpoint.url)
 		request.httpMethod = endpoint.method.rawValue
 		request.httpBody = endpoint.body?.data()
@@ -34,7 +34,7 @@ class NetworkCaller {
 				}
 				
 				if let error = error {
-					completion(.failure(error))
+					completion(.failure(.other(error.localizedDescription)))
 					return
 				}
 				

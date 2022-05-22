@@ -44,6 +44,7 @@
 		0F8AB02F28395AB200744315 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB02E28395AB200744315 /* Date+Extension.swift */; };
 		0F8AB03228398C9400744315 /* OrderDatesActionsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB03128398C9400744315 /* OrderDatesActionsValidator.swift */; };
 		0F8AB035283991D200744315 /* PaymentMethodsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB034283991D200744315 /* PaymentMethodsView.swift */; };
+		0F8AB037283A3E9700744315 /* Payments+Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AB036283A3E9700744315 /* Payments+Service.swift */; };
 		0FACF7A6274122B000B55423 /* SliceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF7A5274122B000B55423 /* SliceApp.swift */; };
 		0FACF7A8274122B000B55423 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF7A7274122B000B55423 /* ContentView.swift */; };
 		0FACF7AA274122B200B55423 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FACF7A9274122B200B55423 /* Assets.xcassets */; };
@@ -93,6 +94,7 @@
 		0F8AB02E28395AB200744315 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		0F8AB03128398C9400744315 /* OrderDatesActionsValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDatesActionsValidator.swift; sourceTree = "<group>"; };
 		0F8AB034283991D200744315 /* PaymentMethodsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsView.swift; sourceTree = "<group>"; };
+		0F8AB036283A3E9700744315 /* Payments+Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Payments+Service.swift"; sourceTree = "<group>"; };
 		0FACF7A2274122B000B55423 /* Slice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FACF7A5274122B000B55423 /* SliceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliceApp.swift; sourceTree = "<group>"; };
 		0FACF7A7274122B000B55423 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				0F8AB0262838128200744315 /* Service.swift */,
 				0F8AB0282838128D00744315 /* User+Service.swift */,
 				0F8AB02A2838237900744315 /* Restaurant+Service.swift */,
+				0F8AB036283A3E9700744315 /* Payments+Service.swift */,
 			);
 			path = New;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				0F769055275CD470006836F2 /* DishView.swift in Sources */,
 				0F8AB0182836506200744315 /* Login+Endpoint.swift in Sources */,
 				0FACF7BD2741239D00B55423 /* SLCircleView.swift in Sources */,
+				0F8AB037283A3E9700744315 /* Payments+Service.swift in Sources */,
 				0F769068275D3F3E006836F2 /* RestaurantsService.swift in Sources */,
 				0F8AB012282D80A200744315 /* Signup+Endpoint.swift in Sources */,
 				0F8AB01528364FC800744315 /* TestNetworkExecutor.swift in Sources */,

@@ -13,7 +13,7 @@ protocol UserServiceAPI {
 				lastName: String,
 				email: String,
 				password: String,
-				completion: @escaping (Result<Void, Error>) -> Void)
+				completion: @escaping (Result<Void, Service.ServiceError>) -> Void)
 	
 	func login(username: String, password: String, completion: @escaping (Result<APIResults.LoginResultModel, Service.ServiceError>) -> Void)
 	
@@ -40,7 +40,7 @@ extension Service {
 		
 		private init() { }
 		
-		func signup(username: String, firstName: String, lastName: String, email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
+		func signup(username: String, firstName: String, lastName: String, email: String, password: String, completion: @escaping (Result<Void, ServiceError>) -> Void) {
 			let endpoint = Endpoint.Signup.endpoint(username: username,
 													firstName: firstName,
 													lastName: lastName,

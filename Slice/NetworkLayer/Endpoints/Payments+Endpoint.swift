@@ -38,5 +38,15 @@ extension Endpoint {
 							path: "/api/get-credit-cards/",
 							authHeader: authHeader)
 		}
+		
+		static func deletePaymentMethod(_ id: Int, using token: String?) -> Endpoint {
+			var authHeader: Endpoint.AuthHeaderField? = nil
+			if let token = token {
+				authHeader = ("Authorization", "Token \(token)")
+			}
+			return Endpoint(method: .DELETE,
+							path: "/api/delete-credit-card/\(id)/",
+							authHeader: authHeader)
+		}
 	}
 }
