@@ -14,6 +14,7 @@ struct LoginView: View {
     @State private var login: String = ""
     @State private var password: String = ""
 	@State private var isErrorPresented: Bool = false
+	@State private var errorText: String = ""
     
 	// old
 //    let userService: UserServiceProtocol = MockUserService()
@@ -63,10 +64,14 @@ struct LoginView: View {
 								self.appViewModel.isUserLoggedIn.toggle()
 							}
 						default:
+							self.errorText = "Ошибка авторизации. Попробуйте снова."
 							isErrorPresented.toggle()
 						}
 					}
-                }
+				} else {
+					self.errorText = "Пожалуйста заполните все поля."
+					self.isErrorPresented = true
+				}
             }, label: {
                 RoundedRectangle(cornerRadius: 100)
                     .shadow(radius: 10)
@@ -87,7 +92,7 @@ struct LoginView: View {
             
             Spacer()
         })
-			.alert("Ошибка авторизации. Попробуйте снова.",
+			.alert(errorText,
 				   isPresented: $isErrorPresented,
 				   actions: { EmptyView() })
     }

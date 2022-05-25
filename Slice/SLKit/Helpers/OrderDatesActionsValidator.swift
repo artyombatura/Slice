@@ -25,7 +25,15 @@ final class OrderDatesActionsValidator {
 	
 	func isCouldBeCreatedAsDelayed(selectedDate: Date) -> Bool {
 		let now = Date.now
-		return (selectedDate.timeIntervalSince1970 - now.timeIntervalSince1970) / Constants.secondsInMinute >= Constants.minutesOffsetToBeDelayed
+		
+		print("$0: selectedDate: \(selectedDate.timeIntervalSince1970)")
+		print("$0: nowDate: \(now.timeIntervalSince1970)")
+		
+		let timeIntervalsDifference: Double = (selectedDate.timeIntervalSince1970 - now.timeIntervalSince1970)
+		
+		print("$0: timeIntervalsDifference: \(timeIntervalsDifference)")
+		
+		return  (timeIntervalsDifference / Constants.secondsInMinute) >= Constants.minutesOffsetToBeDelayed - 1
 	}
 	
 	func isCouldBeCancelled(dateString: String) -> Bool {

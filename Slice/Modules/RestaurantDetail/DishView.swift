@@ -17,7 +17,7 @@ struct DishView: View {
 		AsyncImage(url: URL(string: dish.verifiedPhotoURL),
                    placeholder: { Color.gray })
             .overlay(
-                Color.black.opacity(0.6)
+                Color.black.opacity(0.4)
             )
             .overlay(
                 VStack(content: {

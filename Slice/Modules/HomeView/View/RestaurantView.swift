@@ -15,7 +15,7 @@ struct RestaurantView: View {
         AsyncImage(url: URL(string: restaurant.verifiedPhotoURL),
                    placeholder: { Color.gray })
             .overlay(
-                Color.black.opacity(0.6)
+                Color.black.opacity(0.4)
             )
             .overlay(
                 VStack(content: {

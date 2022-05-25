@@ -95,6 +95,7 @@
 		0F8AB03128398C9400744315 /* OrderDatesActionsValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDatesActionsValidator.swift; sourceTree = "<group>"; };
 		0F8AB034283991D200744315 /* PaymentMethodsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsView.swift; sourceTree = "<group>"; };
 		0F8AB036283A3E9700744315 /* Payments+Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Payments+Service.swift"; sourceTree = "<group>"; };
+		0F8AB038283AC6E500744315 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0FACF7A2274122B000B55423 /* Slice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FACF7A5274122B000B55423 /* SliceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliceApp.swift; sourceTree = "<group>"; };
 		0FACF7A7274122B000B55423 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -314,6 +315,7 @@
 		0FACF7A4274122B000B55423 /* Slice */ = {
 			isa = PBXGroup;
 			children = (
+				0F8AB038283AC6E500744315 /* Info.plist */,
 				0F8AB008282D7C2700744315 /* NetworkLayer */,
 				0F76905E275D3B77006836F2 /* Services */,
 				0FACF7B4274122D600B55423 /* SLKit */,
@@ -444,7 +446,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1310;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					0FACF7A1274122B000B55423 = {
@@ -668,6 +670,7 @@
 				DEVELOPMENT_TEAM = 3TG9F8VMYJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Slice/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -697,6 +700,7 @@
 				DEVELOPMENT_TEAM = 3TG9F8VMYJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Slice/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

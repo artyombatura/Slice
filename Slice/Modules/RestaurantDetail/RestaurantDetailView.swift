@@ -21,7 +21,7 @@ struct Cart {
 class RestaurantDetailViewModel: ObservableObject {
 	let restsService: RestaurantServiceAPI = Service.Restaurant.shared
 	
-	@Published var selectedDate: Date = .now
+	@Published var selectedDate: Date = .now.addingTimeInterval(OrderDatesActionsValidator.shared.secondsOffsetToBeDelayed)
     
     @Published var isDelayedOrder: Bool = false
     
@@ -38,6 +38,13 @@ class RestaurantDetailViewModel: ObservableObject {
 	}
     
 	func createOrder(restID: Int, completion: @escaping (APIResults.OrderAPI) -> Void) {
+		// Проверяет есть ли в заказе хотя бы одно блюдо
+		guard cart.allDishes.isNotEmpty else {
+			self.errorText = "Добавьте в корзину хотя бы одно блюдо"
+			self.isErrorDisplayed.toggle()
+			return
+		}
+		
 		// Проверяет введенные даты на соблюдение условия:
 		// Если дата отложенного заказа больше текущий на 15 минут - заказ может быть отложенным
 		// Если заказ планируется быть выполненым за 15 минут
@@ -84,6 +91,20 @@ struct RestaurantDetailView: View {
                 VStack(content: {
                     SLProfileHeaderView(imageURL: restaurant.verifiedPhotoURL,
                                         title: "")
+					
+					// MARK: - Section with phone and adress
+					HStack {
+						Spacer()
+						
+						VStack {
+							Text(restaurant.address)
+							
+							Text(restaurant.phoneNumber)
+						}
+						
+						Spacer()
+					}
+					.padding(.vertical, 10)
                     
                     Text(restaurant.description)
                         .padding(.horizontal, 16)
@@ -109,6 +130,9 @@ struct RestaurantDetailView: View {
 						let offsetDate = Date(timeIntervalSinceNow: OrderDatesActionsValidator.shared.secondsOffsetToBeDelayed)
                         DatePicker("Выберите время:", selection: $viewModel.selectedDate, in: offsetDate...)
                             .padding(.horizontal, 16)
+							.onAppear {
+//								self.viewModel.selectedDate = Date.now.addingTimeInterval(OrderDatesActionsValidator.shared.secondsOffsetToBeDelayed)
+							}
                     }
                     
                     Divider()

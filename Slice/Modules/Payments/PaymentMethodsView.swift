@@ -65,6 +65,9 @@ struct PaymentMethodsView: View {
 	
 	@State private var isEditing: Bool = false
 	
+	@State private var errorText: String = ""
+	@State private var isErrorPresented: Bool = false
+	
 	var body: some View {
 
 		ScrollView(.vertical, showsIndicators: false, content: {
@@ -141,11 +144,55 @@ struct PaymentMethodsView: View {
 						Spacer()
 						
 						Button(action: {
-							guard cardNumber.count == 16,
-								  cardExpirationDate.count == 4,
-								  cardCVC.count == 3 else {
+							guard cardNumber.isNotEmpty,
+								  cardExpirationDate.isNotEmpty,
+								  cardCVC.isNotEmpty else {
+									  self.errorText = "Пожалуйста заполните все поля и попробуйте снова."
+									  self.isErrorPresented.toggle()
 									  return
 								  }
+							
+							guard cardNumber.count == 16 else {
+								self.errorText = "Номер карты должен состоять из 16 символов. Пожалуйста проверьте и попробуйте снова."
+								self.isErrorPresented.toggle()
+								return
+							}
+							
+							guard cardExpirationDate.count == 4 else {
+								self.errorText = "Дата истечения должна состоять из 4 символов формата 'MMYY'. Пожалуйста проверьте и попробуйте снова."
+								self.isErrorPresented.toggle()
+								return
+							}
+							
+							let expirationMonthRange = cardExpirationDate.startIndex..<cardExpirationDate.index(cardExpirationDate.startIndex, offsetBy: 2)
+							let expirationMonthSubstring = cardExpirationDate.substring(with: expirationMonthRange)
+							let month = Int(expirationMonthSubstring)
+							
+							let expirationYearRange = cardExpirationDate.index(cardExpirationDate.startIndex, offsetBy: 2)..<cardExpirationDate.index(cardExpirationDate.startIndex, offsetBy: 4)
+							let expirationYearSubstring = cardExpirationDate.substring(with: expirationYearRange)
+							let year = Int(expirationYearSubstring)
+							
+							guard let month = month,
+								  month >= 1,
+									month <= 12 else {
+								self.errorText = "Месяц не может быть больше 12. Пожалуйста проверьте и попробуйте снова"
+								self.isErrorPresented.toggle()
+								return
+							}
+							
+							guard let year = year,
+								  year >= 22 else {
+									  self.errorText = "Карта не должна истекать раньше текущего, 2022 года. Пожалуйста проверьте и попробуйте снова"
+									  self.isErrorPresented.toggle()
+									  return
+								  }
+							
+							guard cardCVC.count == 3 else {
+								self.errorText = "Код CVC должен состоять из 3 символов. Пожалуйста проверьте и попробуйте снова."
+								self.isErrorPresented.toggle()
+								return
+							}
+							
 							viewModel.paymentService.addPaymentMethod(number: cardNumber,
 																	  expiration: cardExpirationDate,
 																	  cvc: cardCVC) { result in
@@ -184,6 +231,9 @@ struct PaymentMethodsView: View {
 					Image(systemName: "pencil.circle")
 				})
 			})
+			.alert(errorText,
+				   isPresented: $isErrorPresented,
+				   actions: { EmptyView() })
 			.onAppear {
 				viewModel.fetchPaymentMethods()
 			}
